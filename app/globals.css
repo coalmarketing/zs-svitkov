@@ -1,6 +1,39 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --color-brand: #f18b5d;
+
+  --color-gray: #d3d3d3;
+}
+
+@theme {
+  --color-bg: var(--color-white);
+  --color-fg: var(--color-black);
+  --color-accent: var(--color-brand);
+  --color-muted: var(--color-gray);
+}
+
+body {
+  background-color: var(--color-bg);
+  background: url("../public/img/bg.webp");
+  color: var(--color-fg);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.space-grotesk {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.navbar {
+  background: url("../public/img/menu-bg.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
