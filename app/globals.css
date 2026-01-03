@@ -5,6 +5,7 @@
   --color-black: #000000;
 
   --color-brand: #f18b5d;
+  --color-brand-dark: #fab594;
 
   --color-gray: #d3d3d3;
 }
@@ -33,7 +34,12 @@ h6,
 }
 
 .navbar {
-  background: url("../public/img/menu-bg.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
+  background: linear-gradient(
+    to bottom,
+    #f18b5d,
+    #f58755,
+    #f8824d,
+    #fc7e45,
+    #ff793c
+  );
 }

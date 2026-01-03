@@ -1,5 +1,14 @@
-const Section = ({ children }: { children: React.ReactNode }) => {
-  return <section className="mx-auto max-w-7xl px-4">{children}</section>;
+interface SectionProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+const Section = ({ children, className }: SectionProps) => {
+  return (
+    <section className={`mx-auto max-w-7xl px-16 ${className}`}>
+      {children}
+    </section>
+  );
 };
 
 export default Section;
