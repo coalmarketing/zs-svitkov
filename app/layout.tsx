@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 
 import "./globals.css";
+import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,7 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased ${spaceGrotesk.variable}`}>{children}</body>
+      <body className={`antialiased ${spaceGrotesk.variable}`}>
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

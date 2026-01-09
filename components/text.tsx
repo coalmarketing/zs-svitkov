@@ -3,5 +3,9 @@ interface TextProps {
 }
 
 export const Text: React.FC<TextProps> = ({ children }) => {
-  return <p className="mb-4 leading-relaxed text-justify">{children}</p>;
+  return (
+    <p className="text-sm md:text-base mb-8 leading-relaxed text-justify">
+      {children}
+    </p>
+  );
 };
