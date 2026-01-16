@@ -1,14 +1,16 @@
+import { Button } from "@/components/buttons";
 import Divider from "@/components/divider";
 import Header from "@/components/header";
+import ImageGallery from "@/components/imageGallery";
 import Section from "@/components/section";
 import { Text } from "@/components/text";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen pb-20">
       <Header imageUrl={"/img/headers/home.webp"} homePage={true} />
-      <Section>
+      <Section pt="5rem" pb="0" className="mt-10">
         <h1 className="text-4xl xl:text-7xl font-extrabold mb-6 xl:mb-6">
           ZŠ Svítkov
         </h1>
@@ -17,10 +19,39 @@ export default function Home() {
           <br />
           novým možnostem
         </p>
+        <div className="w-full mt-8">
+          <Button href="">Nástěnka</Button>
+        </div>
+      </Section>
+      <Section className="" pt="0" pb="0">
         <Divider height={64} />
       </Section>
 
-      <Section className="space-grotesk">
+      <Section className="space-grotesk" pt="0" pb="0">
+        <h2 className="text-xl xl:text-3xl font-extrabold mb-6 xl:mb-6">
+          Vzděláváme žáky od roku 1924
+        </h2>
+        <div className="w-full grid grid-cols-2">
+          <div>
+            <ImageGallery
+              images={[
+                {
+                  url: "https://images.unsplash.com/photo-1714332818313-627551693dbc?q=80&w=1335&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                  alt: "Image 1",
+                },
+                {
+                  url: "https://images.unsplash.com/photo-1768270471514-62d962967309?q=80&w=1336&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                  alt: "Image 1",
+                },
+              ]}
+              className="mb-8"
+            />
+          </div>
+          <div></div>
+        </div>
+      </Section>
+
+      <Section className="space-grotesk" pt="0" pb="0">
         <div className="w-full md:w-2/3 mr-auto">
           <Text>
             <strong>

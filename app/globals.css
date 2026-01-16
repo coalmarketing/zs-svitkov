@@ -34,12 +34,7 @@ h6,
 }
 
 .navbar {
-  background: linear-gradient(
-    to bottom,
-    #f18b5d,
-    #f58755,
-    #f8824d,
-    #fc7e45,
-    #ff793c
-  );
+  background: url("../public/img/nav-bg.png") no-repeat center center;
+  background-size: cover;
+  overflow: visible;
 }

@@ -21,17 +21,17 @@ type NavbarProps = {
 
 const DesktopNav: React.FC<NavbarProps> = ({ items }) => {
   return (
-    <nav className="navbar w-3/4 h-16 mx-auto flex justify-center items-center rounded-lg shadow-lg border-orange-200 border-2 space-grotesk">
-      <ul className="w-full flex flex-row flex-nowrap justify-center">
+    <nav className="navbar w-3/4 h-20 mx-auto hidden lg:flex items-center space-grotesk">
+      <ul className="w-full flex flex-row flex-nowrap justify-between">
         {items.map((item) => (
           <li
             key={item.label}
-            className="relative group text-lg w-32 flex justify-center not-last:border-r-2 font-semibold border-orange-200"
+            className="relative group text-xl w-1/5 flex justify-center not-last:border-r-2 font-semibold border-orange-200 pb-3"
           >
             {/* Top-level item */}
             <Link
               href={item.href}
-              className="w-full h-16 flex items-center justify-center text-orange-100 hover:text-orange-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-200"
+              className="w-full h-16 flex items-center justify-center text-black hover:text-orange-200 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-200"
             >
               <span>
                 {item.label}
