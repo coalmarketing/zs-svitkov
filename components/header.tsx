@@ -1,6 +1,6 @@
 import Image from "next/image";
 import DesktopNav from "./navbar";
-import { navbarItems } from "@/utils/webGlobals";
+import { navbarItems } from "@/lib/webGlobals";
 import Link from "next/link";
 
 interface HeaderProps {
