@@ -45,7 +45,7 @@ export default async function NoticeboardPage({
           {news.items.map((item) => (
             <ArticleBlock
               key={item.id}
-              title={item.title}
+              title={item.name}
               href={`/${item.slug}`}
               date={item.date}
               hasImage={item.images && item.images.length > 0}

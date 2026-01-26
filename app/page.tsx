@@ -4,9 +4,20 @@ import Header from "@/components/header";
 import ImageGallery from "@/components/imageGallery";
 import Section from "@/components/section";
 import { Text } from "@/components/text";
+import { getPage } from "@/lib/api/endpoints/pages";
 import Image from "next/image";
 
-export default function Home() {
+export default async function Home() {
+  const page = await getPage("homepage");
+
+  const images =
+    page.images?.map((img, i) => ({
+      url: img.url,
+      alt: img.alt ?? `Fotografie školy ${i + 1}`,
+    })) ?? [];
+
+  if (images.length === 0) return null;
+
   return (
     <main className="min-h-screen pb-20">
       <Header imageUrl={"/img/headers/home.webp"} homePage={true} />
@@ -33,19 +44,7 @@ export default function Home() {
         </h2>
         <div className="w-full grid grid-cols-2">
           <div>
-            <ImageGallery
-              images={[
-                {
-                  url: "https://images.unsplash.com/photo-1714332818313-627551693dbc?q=80&w=1335&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                  alt: "Image 1",
-                },
-                {
-                  url: "https://images.unsplash.com/photo-1768270471514-62d962967309?q=80&w=1336&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                  alt: "Image 1",
-                },
-              ]}
-              className="mb-8"
-            />
+            <ImageGallery images={images} className="mb-8" />
           </div>
           <div></div>
         </div>

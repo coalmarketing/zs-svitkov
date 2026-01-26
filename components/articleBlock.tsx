@@ -27,7 +27,6 @@ const ArticleBlock: React.FC<ArticleBlockProps> = ({
   return (
     <div className="w-full p-10 space-grotesk">
       <div className="border-l-2 border-black px-3 mb-6">
-        {" "}
         <div className="flex flex-row flex-nowrap gap-5 items-center mb-2">
           <p className="text-brand text-lg font-semibold space-grotesk">
             {new Date(date).toLocaleDateString("cs-CZ", {
