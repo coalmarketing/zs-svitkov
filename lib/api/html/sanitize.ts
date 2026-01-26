@@ -1,6 +1,6 @@
 import sanitizeHtml from "sanitize-html";
 
-export function sanitize(content: string) {
+export function sanitise(content: string) {
   return sanitizeHtml(content, {
     allowedTags: ["p", "strong", "em", "ul", "ol", "li", "h3", "a"],
     allowedAttributes: { a: ["href", "target", "rel"] },

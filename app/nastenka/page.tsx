@@ -11,6 +11,7 @@ import {
   getNewsDetail,
   type NewsItem,
 } from "@/lib/api/endpoints/news";
+import { sanitise } from "@/lib/api/html/sanitize";
 
 function buildOpenHref(params: {
   page?: string;
@@ -88,7 +89,9 @@ export default async function NoticeboardPage({
                 open: item.slug,
               })}
             >
-              <div dangerouslySetInnerHTML={{ __html: item.content }} />
+              <div
+                dangerouslySetInnerHTML={{ __html: sanitise(item.content) }}
+              />
             </ArticleBlock>
           ))}
         </div>
@@ -132,7 +135,23 @@ function PinnedArticle({
         hasAttachment={item.documents?.length > 0}
         expanded
       >
-        <div dangerouslySetInnerHTML={{ __html: item.content }} />
+        <div dangerouslySetInnerHTML={{ __html: sanitise(item.content) }} />
+
+        {/* Attachments */}
+        {item.documents?.length > 0 && (
+          <div className="mt-6 flex flex-col gap-3">
+            {item.documents.map((doc) => (
+              <DownloadButton
+                key={doc.url}
+                fileUrl={doc.url}
+                target="_blank"
+                download
+              >
+                {doc.name}
+              </DownloadButton>
+            ))}
+          </div>
+        )}
 
         {/* Images */}
         {images.length > 0 && (
@@ -149,22 +168,6 @@ function PinnedArticle({
                   className="w-full h-full object-cover p-0 mt-0 mb-0 hover:scale-105 transition-transform"
                 />
               </div>
-            ))}
-          </div>
-        )}
-
-        {/* Attachments */}
-        {item.documents?.length > 0 && (
-          <div className="mt-6 flex flex-col gap-3">
-            {item.documents.map((doc) => (
-              <DownloadButton
-                key={doc.url}
-                fileUrl={doc.url}
-                target="_blank"
-                download
-              >
-                {doc.name}
-              </DownloadButton>
             ))}
           </div>
         )}

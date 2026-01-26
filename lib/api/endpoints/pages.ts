@@ -1,8 +1,39 @@
 import { zssFetch } from "../fetcher";
 
+export type PageBlock = {
+  heading: string;
+  content: string; // HTML
+};
+
 export type PageImage = {
   url: string;
   alt?: string;
+};
+
+export type PageDirectoryItem = {
+  code: string;
+  title: string;
+  content: string; // HTML
+};
+
+export type PageDocument = {
+  name: string;
+  url: string;
+};
+
+export type PageLink = {
+  name: string;
+  url: string;
+};
+
+export type UniversalPage = {
+  code: string;
+  title: string;
+  blocks: PageBlock[];
+  images: PageImage[];
+  directory: PageDirectoryItem[];
+  documents: PageDocument[];
+  links: PageLink[];
 };
 
 export type PageResponse = {
@@ -13,8 +44,8 @@ export type PageResponse = {
 };
 
 export async function getPage(code: string) {
-  return zssFetch<PageResponse>(`/api/page/${code}`, {
-    revalidate: 3600,
+  return zssFetch<UniversalPage>(`/api/page/${encodeURIComponent(code)}`, {
+    revalidate: 300,
     tags: [`page:${code}`],
   });
 }
