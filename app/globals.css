@@ -20,7 +20,7 @@
 
 body {
   background-color: var(--color-bg);
-  background: url("../public/img/bg.webp");
+  background: url("../public/img/bg.webp") no-repeat center center fixed;
   color: var(--color-fg);
 }
 

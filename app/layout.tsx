@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`antialiased ${spaceGrotesk.variable} max-w-screen overflow-x-hidden`}
+        className={`antialiased ${spaceGrotesk.variable} max-w-screen overflow-x-hidden scroll-smooth`}
       >
         {children}
         <Footer />

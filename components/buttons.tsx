@@ -42,17 +42,20 @@ interface DownloadButtonProps {
   children: React.ReactNode;
   fileUrl: string;
   download?: boolean;
+  target?: string;
 }
 
 export const DownloadButton: React.FC<DownloadButtonProps> = ({
   children,
   fileUrl,
   download = true,
+  target,
 }) => {
   return (
     <a
       href={fileUrl}
       download={download}
+      target={target}
       className="text-brand hover:text-brand-dark transition"
     >
       <div className="flex flex-row flex-nowrap gap-2 items-center text-sm">

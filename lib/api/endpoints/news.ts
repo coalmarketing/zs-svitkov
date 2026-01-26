@@ -42,7 +42,7 @@ export type NewsCategoryRef = {
 export type NewsItem = {
   id: number;
   slug: string;
-  name: string; // API uses `name` (not title)
+  title: string; // API uses `name` (not title)
   date: string; // keep as string unless API guarantees ISO
   perex?: string | null; // optional if exists
   content: string; // HTML string

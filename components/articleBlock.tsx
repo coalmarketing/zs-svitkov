@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { LuImage } from "react-icons/lu";
 import { PiPaperclipLight } from "react-icons/pi";
 import Tag from "./tag";
@@ -13,6 +14,8 @@ interface ArticleBlockProps {
 
   children?: React.ReactNode;
   labels?: Label[];
+
+  expanded?: boolean;
 }
 
 const ArticleBlock: React.FC<ArticleBlockProps> = ({
@@ -23,6 +26,7 @@ const ArticleBlock: React.FC<ArticleBlockProps> = ({
   hasImage = false,
   hasAttachment = false,
   labels,
+  expanded = false,
 }) => {
   return (
     <div className="w-full p-10 space-grotesk">
@@ -49,15 +53,18 @@ const ArticleBlock: React.FC<ArticleBlockProps> = ({
       </div>
 
       <div className="px-3">
-        <div className="text-black prose prose-sm prose-p:leading-tight prose-a:text-brand prose-a:underline">
+        <div className="text-black prose prose-sm prose-p:leading-tight prose-a:text-brand prose-a:underline max-w-none">
           {children}
         </div>
-        <a
-          className="mt-4 block font-bold text-brand underline underline-offset-5 text-sm"
-          href={href}
-        >
-          Zobrazit více +
-        </a>
+
+        {!expanded && (
+          <Link
+            className="mt-4 block font-bold text-brand underline underline-offset-5 text-sm"
+            href={href + "#pin"}
+          >
+            Zobrazit více +
+          </Link>
+        )}
       </div>
     </div>
   );
