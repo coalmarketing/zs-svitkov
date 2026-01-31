@@ -27,80 +27,7 @@ function buildOpenHref(params: {
   return `/nastenka?${sp.toString()}`;
 }
 
-export default async function NoticeboardPage({
-  searchParams,
-}: {
-  searchParams: Promise<{
-    page?: string;
-    categoryCode?: string;
-    labelCode?: string;
-    open?: string;
-  }>;
-}) {
-  const params = await searchParams;
-  const page = Number(params.page ?? "1");
-
-  const [cats, news, opened] = await Promise.all([
-    getNewsCategoriesGrouped(),
-    getNews({
-      page,
-      limit: 10,
-      categoryCode: params.categoryCode,
-      labelCode: params.labelCode,
-    }),
-    params.open
-      ? getNewsDetail(params.open).catch(() => null)
-      : Promise.resolve(null),
-  ]);
-
-  const items = opened
-    ? news.items.filter((i) => i.slug !== opened.slug)
-    : news.items;
-
-  return (
-    <main className="min-h-screen">
-      <Header imageUrl={"/img/headers/home.webp"} />
-      <PageHeading>Nástěnka</PageHeading>
-
-      <Section>
-        <NewsFilters
-          categories={cats}
-          currentCategoryCode={params.categoryCode}
-          currentLabelCode={params.labelCode}
-        />
-
-        {/* Pinned opened article */}
-        {opened && <PinnedArticle item={opened} baseParams={params} />}
-
-        {/* List */}
-        <div className="mb-6 grid grid-cols-2 gap-4">
-          {items.map((item) => (
-            <ArticleBlock
-              key={item.id}
-              title={item.title}
-              date={item.date}
-              labels={item.labels}
-              hasImage={item.images?.length > 0}
-              hasAttachment={item.documents?.length > 0}
-              href={buildOpenHref({
-                page: String(page),
-                categoryCode: params.categoryCode,
-                labelCode: params.labelCode,
-                open: item.slug,
-              })}
-            >
-              <div
-                dangerouslySetInnerHTML={{ __html: sanitise(item.content) }}
-              />
-            </ArticleBlock>
-          ))}
-        </div>
-      </Section>
-    </main>
-  );
-}
-
-function PinnedArticle({
+const PinnedArticle = ({
   item,
   baseParams,
 }: {
@@ -111,7 +38,7 @@ function PinnedArticle({
     labelCode?: string;
     open?: string;
   };
-}) {
+}) => {
   const images = (item.images ?? []).slice(0, 4).map((img, idx) => ({
     url: img.url,
     alt: img.alt ?? `${item.title} – obrázek ${idx + 1}`,
@@ -139,7 +66,7 @@ function PinnedArticle({
 
         {/* Attachments */}
         {item.documents?.length > 0 && (
-          <div className="mt-6 flex flex-col gap-3">
+          <div className="my-6 flex flex-col gap-3">
             {item.documents.map((doc) => (
               <DownloadButton
                 key={doc.url}
@@ -183,4 +110,80 @@ function PinnedArticle({
       </div>
     </div>
   );
-}
+};
+
+const NoticeboardPage = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    page?: string;
+    categoryCode?: string;
+    labelCode?: string;
+    open?: string;
+  }>;
+}) => {
+  const params = await searchParams;
+  const page = Number(params.page ?? "1");
+
+  const [cats, news, opened] = await Promise.all([
+    getNewsCategoriesGrouped(),
+    getNews({
+      page,
+      limit: 10,
+      categoryCode: params.categoryCode,
+      labelCode: params.labelCode,
+    }),
+    params.open
+      ? getNewsDetail(params.open).catch(() => null)
+      : Promise.resolve(null),
+  ]);
+
+  const items = opened
+    ? news.items.filter((i) => i.slug !== opened.slug)
+    : news.items;
+
+  return (
+    <main className="min-h-screen">
+      <Header imageUrl={"/img/headers/home.webp"} />
+      <PageHeading>Nástěnka</PageHeading>
+      <Section pt="0" pb="0">
+        <NewsFilters
+          categories={cats}
+          currentCategoryCode={params.categoryCode}
+          currentLabelCode={params.labelCode}
+        />
+      </Section>
+
+      <Section>
+        {/* Pinned opened article */}
+        {opened && <PinnedArticle item={opened} baseParams={params} />}
+
+        {/* List */}
+        <div className="mb-6 grid grid-cols-2 gap-4">
+          {items.map((item) => (
+            <ArticleBlock
+              key={item.id}
+              title={item.title}
+              date={item.date}
+              labels={item.labels}
+              hasImage={item.images?.length > 0}
+              hasAttachment={item.documents?.length > 0}
+              href={buildOpenHref({
+                page: String(page),
+                categoryCode: params.categoryCode,
+                labelCode: params.labelCode,
+                open: item.slug,
+              })}
+            >
+              <div
+                dangerouslySetInnerHTML={{ __html: sanitise(item.content) }}
+              />
+            </ArticleBlock>
+          ))}
+        </div>
+      </Section>
+    </main>
+  );
+};
+
+export default NoticeboardPage;

@@ -9,7 +9,7 @@ interface ButtonProps {
 
 const ButtonInner: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div className="bg-brand hover:bg-brand-dark transition rounded-lg px-4 py-2 min-w-75 font-semibold ">
+    <div className="bg-brand hover:bg-brand-dark transition rounded-lg px-4 py-2 min-w-75 font-semibold text-center ">
       {children}
     </div>
   );

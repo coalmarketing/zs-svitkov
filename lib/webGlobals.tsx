@@ -17,6 +17,10 @@ export function slugToApiCode(slug: string) {
   return UNIVERSAL_PAGES.find((p) => p.code === slug)?.apiCode;
 }
 
+export function getUniversalPageMeta(code: string) {
+  return UNIVERSAL_PAGES.find((p) => p.code === code);
+}
+
 export const navbarItems: NavbarItem[] = [
   {
     label: "Škola",
@@ -24,25 +28,25 @@ export const navbarItems: NavbarItem[] = [
     subItems: [
       { label: "Nástěnka školy", href: "/nastenka" },
       { label: "Školní pokladna", href: "#", external: true },
-      { label: "Dokumenty", href: "/skola/dokumenty" },
+      { label: "Dokumenty", href: "/dokumenty" },
       { label: "Měsíční plán", href: "#", external: true },
-      { label: "Poradenství", href: "/skola/poradenstvi" },
-      { label: "Projekty školy", href: "/skola/projekty-skoly" },
-      { label: "SRPDŠ", href: "/skola/srpds" },
-      { label: "Školská rada", href: "/skola/skolska-rada" },
-      { label: "Školní časopis", href: "/skola/skolni-casopis" },
+      { label: "Poradenství", href: "/poradenstvi" },
+      { label: "Projekty školy", href: "/projekty-skoly" },
+      { label: "SRPDŠ", href: "/srpds" },
+      { label: "Školská rada", href: "/skolska-rada" },
+      { label: "Školní časopis", href: "/skolni-casopis" },
       { label: "Fotogalerie", href: "#", external: true },
     ],
   },
   {
     label: "Žáci",
-    href: "/zaci",
+    href: "",
     subItems: [
-      { label: "Třídy", href: "/nastenka/traidy" },
+      { label: "Třídy", href: "/nastenka?categoryCode=tridy" },
       { label: "Rozvrhy", href: "#", external: true },
-      { label: "Úspěchy žáků", href: "/nastenka/uspechy" },
-      { label: "Žákovská rada", href: "/zaci/zakovska-rada" },
-      { label: "Budoucí prvňáčci", href: "/zaci/budouci-prvnacci" },
+      { label: "Úspěchy žáků", href: "/nastenka?categoryCode=uspechy-zaku" },
+      { label: "Žákovská rada", href: "/zakovska-rada" },
+      { label: "Budoucí prvňáčci", href: "/budouci-prvnacci" },
     ],
   },
   {
