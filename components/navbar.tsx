@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
+import { usePathname } from "next/navigation";
+import React, { use, useState } from "react";
 
 type NavbarSubItem = {
   label: string;
@@ -20,24 +21,56 @@ type NavbarProps = {
 };
 
 const DesktopNav: React.FC<NavbarProps> = ({ items }) => {
+  const pathname = usePathname();
+  const [hovered, setHovered] = useState<number | null>(null);
+
+  const inside = (item: NavbarItem, current: boolean, hover: boolean) => (
+    <span
+      className="relative"
+      style={{
+        textDecoration: current ? "underline" : "none",
+        textUnderlineOffset: "6px",
+        textDecorationThickness: "2px",
+      }}
+    >
+      {item.label}
+      <span className="absolute -right-5 top-1/2 -translate-y-1/2">
+        {item.subItems ? (!hover ? " +" : " -") : ""}
+      </span>
+    </span>
+  );
+
   return (
-    <nav className="navbar w-3/4 h-20 mx-auto hidden lg:flex items-center space-grotesk">
+    <nav className="navbar w-3/4 h-20 mx-auto hidden lg:flex items-center space-grotesk pl-12 pr-24">
       <ul className="w-full flex flex-row flex-nowrap justify-between">
-        {items.map((item) => (
+        {items.map((item, idx) => (
           <li
             key={item.label}
-            className="relative group text-xl w-1/5 flex justify-center not-last:border-r-2 font-semibold border-orange-200 pb-3"
+            className="relative group text-xl w-1/5 flex justify-center font-semibold pb-3"
           >
             {/* Top-level item */}
-            <Link
-              href={item.href}
-              className="w-full h-16 flex items-center justify-center text-black hover:text-orange-200 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-200"
-            >
-              <span>
-                {item.label}
-                {item.subItems ? " +" : ""}
+            {item.href !== "" ? (
+              <Link
+                href={item.href}
+                onMouseEnter={() => setHovered(idx)}
+                onMouseLeave={() => setHovered(null)}
+                className="w-full h-16 flex items-center justify-center text-black hover:text-orange-200 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-200"
+              >
+                {inside(item, pathname === item.href, hovered === idx)}
+              </Link>
+            ) : (
+              <span
+                className="w-full h-16 flex items-center justify-center text-black cursor-default"
+                onMouseEnter={() => setHovered(idx)}
+                onMouseLeave={() => setHovered(null)}
+              >
+                {inside(
+                  item,
+                  item.subItems?.some((sub) => sub.href === pathname) || false,
+                  hovered === idx,
+                )}
               </span>
-            </Link>
+            )}
 
             {/* Dropdown */}
             {item.subItems?.length ? (

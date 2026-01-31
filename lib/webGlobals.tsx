@@ -22,9 +22,10 @@ export function getUniversalPageMeta(code: string) {
 }
 
 export const navbarItems: NavbarItem[] = [
+  { label: "Domů", href: "/" },
   {
     label: "Škola",
-    href: "/",
+    href: "",
     subItems: [
       { label: "Nástěnka školy", href: "/nastenka" },
       { label: "Školní pokladna", href: "#", external: true },
