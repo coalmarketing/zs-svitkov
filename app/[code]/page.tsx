@@ -95,16 +95,6 @@ export default async function UniversalPageRoute({
       <Section pt={"0"} pb={"8rem"}>
         {/* Top buttons */}
         <div className="mb-6 flex flex-wrap gap-3 justify-center">
-          <Button href="/kontakty">Kontakty</Button>
-
-          {matchedNewsCategoryCode && (
-            <Button
-              href={`/nastenka?page=1&categoryCode=${encodeURIComponent(matchedNewsCategoryCode)}`}
-            >
-              Nástěnka
-            </Button>
-          )}
-
           {(page.directory?.length ?? 0) > 0 && (
             <DirectorySelect
               items={page.directory.map((d) => ({
@@ -113,6 +103,15 @@ export default async function UniversalPageRoute({
               }))}
               current={dir}
             />
+          )}
+          <Button href="/kontakty">Kontakty</Button>
+
+          {matchedNewsCategoryCode && (
+            <Button
+              href={`/nastenka?page=1&categoryCode=${encodeURIComponent(matchedNewsCategoryCode)}`}
+            >
+              Nástěnka
+            </Button>
           )}
         </div>
 

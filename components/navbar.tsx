@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { use, useState } from "react";
+import { BiLinkExternal } from "react-icons/bi";
 
 type NavbarSubItem = {
   label: string;
@@ -94,7 +95,11 @@ const DesktopNav: React.FC<NavbarProps> = ({ items }) => {
                           rel="noopener noreferrer"
                           className="block px-4 py-2 text-sm text-orange-900 hover:bg-orange-50 focus:bg-orange-50 outline-none"
                         >
-                          {sub.label}
+                          {
+                            <span className="flex flex-row flex-nowrap gap-2 items-center justify-start">
+                              {sub.label + " "} <BiLinkExternal />
+                            </span>
+                          }
                         </a>
                       ) : (
                         <Link

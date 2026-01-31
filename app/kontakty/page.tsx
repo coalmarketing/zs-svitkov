@@ -1,6 +1,6 @@
 import Header from "@/components/header";
 import Section from "@/components/section";
-import { PageHeading } from "@/components/text";
+import { Heading, PageHeading } from "@/components/text";
 import Link from "next/link";
 
 import {
@@ -12,21 +12,25 @@ import {
 
 function ContactCard({ person }: { person: ContactPerson }) {
   return (
-    <div className="rounded-md border p-4">
-      <div className="font-bold">{person.name}</div>
-      {person.position && (
-        <div className="text-sm opacity-80">{person.position}</div>
+    <div className="w-full text-sm">
+      {person.position ? (
+        <>
+          <div className="font-bold text-brand">{person.position}</div>
+        </>
+      ) : (
+        <div className="font-bold text-brand">{person.name}</div>
       )}
 
-      <div className="mt-3 flex flex-col gap-1 text-sm">
+      <div className="grid gap-1 mt-1 grid-cols-5">
+        {person.position && <p className="">{person.name}</p>}
         {person.email && (
-          <a className="text-brand underline" href={`mailto:${person.email}`}>
+          <a className="text-black underline" href={`mailto:${person.email}`}>
             {person.email}
           </a>
         )}
         {person.phone && (
           <a
-            className="text-brand underline"
+            className="text-black underline"
             href={`tel:${person.phone.replace(/\s+/g, "")}`}
           >
             {person.phone}
@@ -97,13 +101,23 @@ function SchoolInfoBlock({ info }: { info: SchoolInfo }) {
   );
 }
 
-function GenericItems({ items }: { items: string[] }) {
+function GenericItems({
+  items,
+  heading,
+}: {
+  items: string[];
+  heading: string;
+}) {
   return (
-    <ul className="list-disc pl-6">
-      {items.map((s) => (
-        <li key={s}>{s}</li>
-      ))}
-    </ul>
+    <div className="text-sm">
+      <div className="font-bold text-brand">{heading}</div>
+
+      <div className="grid gap-1 mt-1 grid-cols-5">
+        {items.map((s) => (
+          <p key={s}>{s}</p>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -112,12 +126,10 @@ function ContactsGroupSection({ group }: { group: ContactsGroup }) {
 
   return (
     <section>
-      <h2 className="text-2xl font-bold mb-4 pl-3 border-l-2 border-black">
-        {category.name}
-      </h2>
+      <Heading>{category.name}</Heading>
 
       {category.type === "contacts" && (
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="flex flex-col gap-6 ">
           {(group.contacts ?? []).map((p) => (
             <ContactCard key={p.id} person={p} />
           ))}
@@ -129,7 +141,7 @@ function ContactsGroupSection({ group }: { group: ContactsGroup }) {
       )}
 
       {category.type === "generic" && (group.items?.length ?? 0) > 0 && (
-        <GenericItems items={group.items!} />
+        <GenericItems items={group.items!} heading={group.category.name} />
       )}
 
       {/* Defensive fallbacks */}
@@ -156,8 +168,9 @@ function ContactsGroupSection({ group }: { group: ContactsGroup }) {
 
 export default async function ContactsPage() {
   const groups = await getContactsGrouped();
+  const genericItems = groups.filter((g) => g.category.type === "generic");
 
-  const sorted = [...groups].sort(
+  const sorted = [...groups.filter((g) => g.category.type !== "generic")].sort(
     (a, b) => (a.category.order ?? 9999) - (b.category.order ?? 9999),
   );
 
@@ -166,7 +179,24 @@ export default async function ContactsPage() {
       <Header imageUrl={"/img/headers/home.webp"} />
       <PageHeading>Kontakty</PageHeading>
 
-      <Section>
+      <Section pt={"2em"}>
+        <Heading>Užitečné odkazy</Heading>
+        <div className="flex flex-col gap-6 mb-12">
+          {genericItems.length > 0 ? (
+            genericItems.map((g) => (
+              <GenericItems
+                key={g.category.id}
+                items={g.items ?? []}
+                heading={g.category.name}
+              />
+            ))
+          ) : (
+            <div className="rounded-md border p-4">
+              Žádné položky k zobrazení.
+            </div>
+          )}
+        </div>
+
         <div className="flex flex-col gap-10">
           {sorted.map((g) => (
             <ContactsGroupSection key={g.category.id} group={g} />

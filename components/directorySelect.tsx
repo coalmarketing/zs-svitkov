@@ -26,7 +26,7 @@ export default function DirectorySelect({
     <div className="mb-6">
       <label className="sr-only">Rozcestník</label>
       <select
-        className="bg-brand hover:bg-brand-dark transition rounded-lg px-4 py-2 min-w-75 space-grotesk font-semibold text-center"
+        className="bg-brand hover:bg-brand-dark transition rounded-lg px-4 py-2.5 min-w-75 space-grotesk font-semibold text-center"
         value={current ?? ""}
         onChange={(e) => setDir(e.target.value)}
       >
