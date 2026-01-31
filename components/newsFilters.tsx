@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { Button } from "./buttons";
 
 export type Label = { id: number; code: string; name: string };
 type Subcategory = { id: number; code: string; name: string; labels?: Label[] };
@@ -118,7 +119,7 @@ export default function NewsFilters({
       <div className="flex-1">
         <label className="mb-1 block text-sm font-medium">Kategorie</label>
         <select
-          className="w-full rounded-md border px-3 py-2"
+          className="bg-brand hover:bg-brand-dark transition rounded-lg px-4 py-2.5 min-w-75 w-full space-grotesk font-semibold text-left"
           value={selectedTop?.code ?? ""}
           onChange={(e) => onTopChange(e.target.value)}
         >
@@ -137,7 +138,7 @@ export default function NewsFilters({
               Podkategorie
             </label>
             <select
-              className="w-full rounded-md border px-3 py-2"
+              className="bg-brand hover:bg-brand-dark transition rounded-lg px-4 py-2.5 min-w-75 w-full space-grotesk font-semibold text-left"
               value={selectedSub?.code ?? ""}
               onChange={(e) => onSubChange(e.target.value)}
             >
@@ -153,7 +154,7 @@ export default function NewsFilters({
             <div className="flex-1">
               <label className="mb-1 block text-sm font-medium">Štítky</label>
               <select
-                className="w-full rounded-md border px-3 py-2"
+                className="bg-brand hover:bg-brand-dark transition rounded-lg px-4 py-2.5 min-w-75 w-full space-grotesk font-semibold text-center"
                 value={currentLabelCode ?? ""}
                 onChange={(e) => onLabelChange(e.target.value)}
                 disabled={labelOptions.length <= 1}
@@ -169,12 +170,9 @@ export default function NewsFilters({
         </>
       )}
 
-      <button
-        className="rounded-md border px-3 py-2 text-sm"
-        onClick={() => push({ categoryCode: "", labelCode: "" })}
-      >
+      <Button onClick={() => push({ categoryCode: "", labelCode: "" })}>
         Zrušit filtry
-      </button>
+      </Button>
     </div>
   );
 }

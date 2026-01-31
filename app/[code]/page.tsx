@@ -92,9 +92,9 @@ export default async function UniversalPageRoute({
       <Header imageUrl={"/img/headers/home.webp"} />
       <PageHeading>{page.title}</PageHeading>
 
-      <Section>
+      <Section pt={"0"} pb={"8rem"}>
         {/* Top buttons */}
-        <div className="mb-6 flex flex-wrap gap-3">
+        <div className="mb-6 flex flex-wrap gap-3 justify-center">
           <Button href="/kontakty">Kontakty</Button>
 
           {matchedNewsCategoryCode && (
@@ -104,18 +104,19 @@ export default async function UniversalPageRoute({
               Nástěnka
             </Button>
           )}
+
+          {(page.directory?.length ?? 0) > 0 && (
+            <DirectorySelect
+              items={page.directory.map((d) => ({
+                code: d.code,
+                title: d.title,
+              }))}
+              current={dir}
+            />
+          )}
         </div>
 
         {/* Directory dropdown: switches page content to ONLY the selected directory item */}
-        {(page.directory?.length ?? 0) > 0 && (
-          <DirectorySelect
-            items={page.directory.map((d) => ({
-              code: d.code,
-              title: d.title,
-            }))}
-            current={dir}
-          />
-        )}
 
         {/* Optional gallery */}
         {galleryImages.length > 0 && (

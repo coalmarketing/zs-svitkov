@@ -81,6 +81,8 @@ const DesktopNav: React.FC<NavbarProps> = ({ items }) => {
                   bg-accent shadow-lg backdrop-blur
                   group-hover:block group-focus-within:block
                 "
+                onMouseEnter={() => setHovered(idx)}
+                onMouseLeave={() => setHovered(null)}
               >
                 <ul className="">
                   {item.subItems.map((sub) => (

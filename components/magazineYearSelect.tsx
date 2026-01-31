@@ -23,7 +23,7 @@ export default function SchoolYearSelect({
     <div className="mb-6">
       <label className="mb-1 block text-sm font-medium">Školní rok</label>
       <select
-        className="w-full rounded-md border px-3 py-2"
+        className="bg-brand hover:bg-brand-dark transition rounded-lg px-4 py-2 min-w-75 space-grotesk font-semibold text-center"
         value={current}
         onChange={(e) => setYear(e.target.value)}
       >
