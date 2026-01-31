@@ -35,6 +35,7 @@ export const navbarItems: NavbarItem[] = [
       { label: "SRPDŠ", href: "/srpds" },
       { label: "Školská rada", href: "/skolska-rada" },
       { label: "Školní časopis", href: "/skolni-casopis" },
+      { label: "Historie školy", href: "/historie-skoly" },
       { label: "Fotogalerie", href: "#", external: true },
     ],
   },

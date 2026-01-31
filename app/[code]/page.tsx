@@ -142,8 +142,8 @@ export default async function UniversalPageRoute({
         {/* Documents */}
         {(page.documents?.length ?? 0) > 0 && (
           <div className="mt-10 flex flex-col gap-3">
-            {page.documents.map((doc) => (
-              <DownloadButton key={doc.url} fileUrl={doc.url}>
+            {page.documents.map((doc, idx) => (
+              <DownloadButton key={doc.url + " " + idx} fileUrl={doc.url}>
                 {doc.name}
               </DownloadButton>
             ))}
@@ -157,8 +157,8 @@ export default async function UniversalPageRoute({
               Odkazy
             </h2>
             <ul className="list-disc pl-6">
-              {page.links.map((l) => (
-                <li key={l.url}>
+              {page.links.map((l, idx) => (
+                <li key={l.url + " " + idx}>
                   <a
                     className="text-brand underline"
                     href={l.url}
