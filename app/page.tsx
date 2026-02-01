@@ -3,6 +3,7 @@ import Divider from "@/components/divider";
 import Header from "@/components/header";
 import ImageGallery from "@/components/imageGallery";
 import Section from "@/components/section";
+import SocialButtons from "@/components/socialButtons";
 import { Text } from "@/components/text";
 import { getPage } from "@/lib/api/endpoints/pages";
 import Image from "next/image";
@@ -42,11 +43,18 @@ export default async function Home() {
         <h2 className="text-xl xl:text-3xl font-extrabold mb-6 xl:mb-6">
           Vzděláváme žáky od roku 1924
         </h2>
-        <div className="w-full grid grid-cols-2">
-          <div>
+        <div className="w-full grid grid-cols-3 gap-20 items-center">
+          <div className="col-span-2">
             <ImageGallery images={images} className="mb-8" />
           </div>
-          <div></div>
+          <div className="">
+            <h3 className="text-4xl font-bold space-grotesk">
+              Naše škola
+              <br />
+              na sítích
+            </h3>
+            <SocialButtons />
+          </div>
         </div>
       </Section>
 

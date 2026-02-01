@@ -8,6 +8,7 @@ const poppins = Poppins({
 
 import Image from "next/image";
 import { getImportantLinks } from "@/lib/api/endpoints/importantLinks";
+import SocialButtons from "./socialButtons";
 
 export async function FooterImportantLinks() {
   const links = await getImportantLinks();
@@ -51,7 +52,7 @@ const Footer = () => {
       </div>
       <div className="h-200 lg:h-100 bg-slate-200 relative">
         <div className="max-w-7xl mx-auto h-full grid grid-cols-6 gap-6 px-14 md:px-0">
-          <div className="col-span-6 md:col-span-4 flex flex-col justify-center items-start bg-red-500/20 w-full gap-6">
+          <div className="col-span-6 md:col-span-4 flex flex-col justify-center items-start w-full gap-6">
             <div>
               <h4 className="font-semibold text-xl mb-4">Důležité odkazy</h4>
               <FooterImportantLinks />
@@ -61,8 +62,10 @@ const Footer = () => {
               <div className="flex flex-row w-full h-24 flex-nowrap"></div>
             </div>
           </div>
-          <div className="col-span-6 md:col-span-2 flex flex-col bg-blue-500/20 w-full h-full relative">
-            {" "}
+          <div className="col-span-6 md:col-span-2 flex flex-col w-full h-full relative">
+            <div className="mt-28 pl-18">
+              <SocialButtons />
+            </div>
             {/* VODOZNAK */}
             <div className="absolute bottom-10 right-10 space-grotesk font-bold leading-none opacity-25 text-6xl pointer-events-none select-none">
               ZŠ Svítkov

@@ -1,5 +1,10 @@
 import { NavbarItem } from "@/components/navbar";
 
+export const SITE_NAME = "Základní škola Pardubice-Svítkov";
+
+export const FACEBOOK_URL = "https://www.facebook.com/zssvitkov";
+export const INSTAGRAM_URL = "https://www.instagram.com/zssvitkov100/?hl=cs";
+
 export const UNIVERSAL_PAGES = [
   { code: "poradenstvi", apiCode: "poradenstvi" },
   { code: "projekty-skoly", apiCode: "projekty-skoly" },
