@@ -32,7 +32,7 @@ export default async function Home() {
           novým možnostem
         </p>
         <div className="w-full mt-8">
-          <Button href="">Nástěnka</Button>
+          <Button href="/nastenka">Nástěnka</Button>
         </div>
       </Section>
       <Section className="" pt="0" pb="0">

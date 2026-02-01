@@ -1,13 +1,37 @@
 import Header from "@/components/header";
 import Section from "@/components/section";
 import { PageHeading } from "@/components/text";
-import { DownloadButton } from "@/components/buttons";
 import SchoolYearSelect from "@/components/magazineYearSelect";
 
 import {
   getSchoolMagazine,
   getSchoolMagazineYears,
 } from "@/lib/api/endpoints/schoolMagazine";
+
+const SchoolMagazineBlock = ({
+  url,
+
+  name,
+}: {
+  url: string;
+  id: number;
+  name: string;
+}) => {
+  return (
+    <div className="border-l-[3px] border-black pl-4 py-1 space-grotesk">
+      <p className="font-bold text-brand text-base mb-2">Školní časopis</p>
+      <h3 className="font-bold text-3xl mb-2">{name}</h3>
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-brand text-sm underline font-bold"
+      >
+        Stáhnout číslo
+      </a>
+    </div>
+  );
+};
 
 export default async function SchoolMagazinePage({
   searchParams,
@@ -18,9 +42,6 @@ export default async function SchoolMagazinePage({
 
   const years = await getSchoolMagazineYears();
 
-  // Choose year:
-  // - if URL specifies one and it exists, use it
-  // - otherwise use the first year from API (usually newest if backend returns it that way)
   const requested = params.schoolYear;
   const activeYear =
     requested && years.includes(requested) ? requested : (years[0] ?? "");
@@ -32,7 +53,7 @@ export default async function SchoolMagazinePage({
       <Header imageUrl={"/img/headers/home.webp"} />
       <PageHeading>Školní časopis</PageHeading>
 
-      <Section>
+      <Section pt="2em">
         {years.length > 0 && (
           <SchoolYearSelect years={years} current={activeYear} />
         )}
@@ -42,15 +63,14 @@ export default async function SchoolMagazinePage({
             Pro tento školní rok zatím nejsou dostupná čísla.
           </div>
         ) : (
-          <div className="flex flex-col gap-3">
+          <div className="grid grid-cols-3 gap-6 gap-y-14 mt-10">
             {issues.map((issue) => (
-              <DownloadButton
+              <SchoolMagazineBlock
                 key={issue.id}
-                fileUrl={issue.url}
-                target="_blank"
-              >
-                {issue.name}
-              </DownloadButton>
+                id={issue.id}
+                name={issue.name}
+                url={issue.url}
+              />
             ))}
           </div>
         )}

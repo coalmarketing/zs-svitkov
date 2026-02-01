@@ -20,29 +20,35 @@ export default async function HistoryPage() {
             Historie zatím není k dispozici.
           </div>
         ) : (
-          <div className="space-y-10">
+          <div className="max-w-2xl mx-auto">
             {sorted.map((e, idx) => (
-              <div key={e.id} className="grid grid-cols-[90px_24px_1fr] gap-4">
-                {/* Year */}
-                <div className="text-brand font-extrabold text-lg">
-                  {e.year}
-                </div>
-
+              <div key={e.id} className="grid grid-cols-[24px_1fr] gap-4">
                 {/* Timeline spine */}
                 <div className="relative flex justify-center">
-                  <span className="absolute top-2 h-3 w-3 rounded-full border-2 border-black bg-white" />
+                  <span className="absolute top-2 h-4 w-4 rounded-full border-2 border-black bg-black" />
                   {/* vertical line */}
-                  {idx !== sorted.length - 1 && (
-                    <span className="absolute top-5 bottom-[-40px] w-px bg-black/30" />
+                  {idx !== sorted.length - 1 ? (
+                    <span className="absolute top-5 -bottom-10 w-0.75 bg-black" />
+                  ) : (
+                    <>
+                      <span className="absolute top-5 bottom-1/2 w-0.75 bg-black" />
+                      <span className="absolute top-[52%] bottom-[46%] w-0.75 bg-black opacity-80" />
+                      <span className="absolute top-[56%] bottom-[42%] w-0.75 bg-black opacity-60" />
+                      <span className="absolute top-[60%] bottom-[38%] w-0.75 bg-black opacity-40" />
+                      <span className="absolute top-[64%] bottom-[34%] w-0.75 bg-black opacity-20" />
+                    </>
                   )}
                 </div>
 
                 {/* Content */}
-                <div className="rounded-md border p-4">
+                <div className="pb-20 px-10">
+                  <div className="text-brand font-extrabold text-4xl">
+                    {e.year}
+                  </div>
                   <p className="text-base leading-relaxed">{e.text}</p>
 
                   {e.imageUrl && (
-                    <div className="mt-4 overflow-hidden rounded-md border">
+                    <div className="mt-4 overflow-hidden rounded-2xl border border-black/20">
                       <Image
                         src={e.imageUrl}
                         alt={`${e.year} – fotografie`}

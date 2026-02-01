@@ -43,60 +43,62 @@ function ContactCard({ person }: { person: ContactPerson }) {
 
 function SchoolInfoBlock({ info }: { info: SchoolInfo }) {
   return (
-    <div className="rounded-md border p-4">
-      <div className="text-lg font-bold">{info.name}</div>
-
-      <dl className="mt-3 grid gap-2">
-        {info.street && (
-          <div className="grid grid-cols-[160px_1fr] gap-3">
-            <dt className="font-semibold">Ulice</dt>
-            <dd>{info.street}</dd>
-          </div>
-        )}
-        {info.city && (
-          <div className="grid grid-cols-[160px_1fr] gap-3">
-            <dt className="font-semibold">Město</dt>
-            <dd>{info.city}</dd>
-          </div>
-        )}
+    <div className="text-sm grid grid-cols-2 gap-6">
+      <div>
+        <div className="">
+          <h4 className="font-bold text-brand">Adresa</h4>
+          <p className="">
+            {info.name}
+            <br />
+            {info.street && (
+              <>
+                {info.street}
+                <br />
+                {info.city}
+              </>
+            )}
+          </p>
+        </div>
         {info.ico && (
-          <div className="grid grid-cols-[160px_1fr] gap-3">
-            <dt className="font-semibold">IČO</dt>
-            <dd>{info.ico}</dd>
+          <div className="mt-8">
+            <h4 className="font-bold text-brand">IČO</h4>
+            <p className="">{info.ico}</p>
           </div>
         )}
+
+        {info.cashDeskUrl && (
+          <div className="mt-8">
+            <Link
+              className="text-brand underline font-semibold"
+              href={info.cashDeskUrl}
+            >
+              Vstup do školní pokladny
+            </Link>
+          </div>
+        )}
+      </div>
+      <div>
         {info.dataBox && (
-          <div className="grid grid-cols-[160px_1fr] gap-3">
-            <dt className="font-semibold">Datová schránka</dt>
-            <dd>{info.dataBox}</dd>
+          <div className="">
+            <h4 className="font-bold text-brand">Datová schránka</h4>
+            <p className="">{info.dataBox}</p>
           </div>
         )}
-      </dl>
 
-      {(info.bankAccounts?.length ?? 0) > 0 && (
-        <div className="mt-4">
-          <div className="font-semibold mb-2">Bankovní účty</div>
-          <ul className="list-disc pl-5">
-            {info.bankAccounts!.map((acc) => (
-              <li key={`${acc.label}-${acc.accountNumber}`}>
-                <span className="font-semibold">{acc.label}:</span>{" "}
-                {acc.accountNumber}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {info.cashDeskUrl && (
-        <div className="mt-4">
-          <Link
-            className="text-brand underline font-semibold"
-            href={info.cashDeskUrl}
-          >
-            Pokladna
-          </Link>
-        </div>
-      )}
+        {(info.bankAccounts?.length ?? 0) > 0 && (
+          <div className="mt-8">
+            <h4 className="font-bold text-brand">Bankovní účty</h4>
+            <ul className="">
+              {info.bankAccounts!.map((acc) => (
+                <li key={`${acc.label}-${acc.accountNumber}`}>
+                  <span className="font-semibold">{acc.label}:</span>{" "}
+                  {acc.accountNumber}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -180,7 +182,7 @@ export default async function ContactsPage() {
       <PageHeading>Kontakty</PageHeading>
 
       <Section pt={"2em"}>
-        <Heading>Užitečné odkazy</Heading>
+        <Heading>Důležité kontakty</Heading>
         <div className="flex flex-col gap-6 mb-12">
           {genericItems.length > 0 ? (
             genericItems.map((g) => (
