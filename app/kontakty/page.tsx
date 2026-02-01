@@ -9,6 +9,7 @@ import {
   type ContactPerson,
   type SchoolInfo,
 } from "@/lib/api/endpoints/contacts";
+import { Button } from "@/components/buttons";
 
 function ContactCard({ person }: { person: ContactPerson }) {
   return (
@@ -68,12 +69,8 @@ function SchoolInfoBlock({ info }: { info: SchoolInfo }) {
 
         {info.cashDeskUrl && (
           <div className="mt-8">
-            <Link
-              className="text-brand underline font-semibold"
-              href={info.cashDeskUrl}
-            >
-              Vstup do školní pokladny
-            </Link>
+            <h4 className="font-bold text-brand mb-2">Školní pokladna</h4>
+            <Button href={info.cashDeskUrl}>Vstup do školní pokladny</Button>
           </div>
         )}
       </div>
