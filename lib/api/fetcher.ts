@@ -1,7 +1,12 @@
 import "server-only";
 
-const BASE_URL = process.env.ZSS_BASE_URL!;
-const TOKEN = process.env.ZSS_API_TOKEN!;
+const BASE_URL = process.env.ZSS_BASE_URL;
+const TOKEN = process.env.ZSS_API_TOKEN;
+
+if (!BASE_URL) throw new Error("Missing ZSS_BASE_URL");
+if (!TOKEN) throw new Error("Missing ZSS_API_TOKEN");
+
+const TOKEN_VALUE = TOKEN as string;
 
 type FetchOpts = {
   revalidate?: number;
@@ -15,9 +20,9 @@ export async function zssFetch<T>(
 ): Promise<T> {
   const url = new URL(path, BASE_URL);
 
-  const res = await fetch(url, {
+  const res = await fetch(url.toString(), {
     headers: {
-      "X-AUTH-TOKEN": TOKEN,
+      "X-AUTH-TOKEN": TOKEN_VALUE,
       Accept: "application/json",
     },
     cache: opts.cache ?? "force-cache",

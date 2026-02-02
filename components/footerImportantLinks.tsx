@@ -1,0 +1,30 @@
+import Image from "next/image";
+import { getImportantLinks } from "@/lib/api/endpoints/importantLinks";
+
+export default async function FooterImportantLinks() {
+  const links = await getImportantLinks();
+  if (!links?.length) return null;
+
+  return (
+    <div className="flex flex-wrap items-center justify-center gap-10">
+      {links.map((l) => (
+        <a
+          key={l.id}
+          href={l.url}
+          target="_blank"
+          rel="noreferrer"
+          title={l.name}
+          className="opacity-80 transition hover:opacity-100"
+        >
+          <Image
+            src={l.logoUrl}
+            alt={l.name}
+            width={160}
+            height={80}
+            className="h-14 w-20 object-contain object-left"
+          />
+        </a>
+      ))}
+    </div>
+  );
+}
