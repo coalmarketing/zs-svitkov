@@ -53,3 +53,14 @@ h6,
   background: url("../public/img/nav-bg.png") center / contain no-repeat;
   background-size: contain;
 }
+
+.dropdown::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg) scaleY(1);
+  width: 30px;
+  height: 30px;
+  background-color: var(--color-accent);
+}

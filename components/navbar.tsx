@@ -77,10 +77,10 @@ const DesktopNav: React.FC<NavbarProps> = ({ items }) => {
             {item.subItems?.length ? (
               <div
                 className="
-                  absolute left-1/2 top-16 z-50 -translate-x-1/2
-                  hidden min-w-56 rounded-lg border border-orange-200 overflow-hidden
+                  absolute left-1/2 top-16 z-50 py-8 px-4 -translate-x-1/2
+                  hidden min-w-56 rounded-3xl
                   bg-accent shadow-lg backdrop-blur
-                  group-hover:block group-focus-within:block
+                  group-hover:block group-focus-within:block dropdown
                 "
                 onMouseEnter={() => setHovered(idx)}
                 onMouseLeave={() => setHovered(null)}
@@ -93,7 +93,7 @@ const DesktopNav: React.FC<NavbarProps> = ({ items }) => {
                           href={sub.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="block px-4 py-2 text-sm text-orange-900 hover:bg-orange-50 focus:bg-orange-50 outline-none"
+                          className="block px-4 py-1 text-[17px] text-black outline-none hover:text-brand-dark transition"
                         >
                           {
                             <span className="flex flex-row flex-nowrap gap-2 items-center justify-start">
@@ -104,7 +104,7 @@ const DesktopNav: React.FC<NavbarProps> = ({ items }) => {
                       ) : (
                         <Link
                           href={sub.href}
-                          className="block px-4 py-2 text-sm text-orange-900 hover:bg-orange-50 focus:bg-orange-50 outline-none"
+                          className="block px-4 py-1 text-[17px] text-black outline-none hover:text-brand-dark transition"
                         >
                           {sub.label}
                         </Link>

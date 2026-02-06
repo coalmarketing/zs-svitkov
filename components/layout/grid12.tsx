@@ -25,10 +25,13 @@ export function DisplayGrid12({ gridSettings = globalGridSettings }) {
 
   return (
     <div
-      className={clsx("fixed top-0 left-0 w-full h-screen z-10", gridSettings)}
+      className={clsx(
+        "fixed top-0 left-0 w-full h-screen z-10 pointer-events-none select-none",
+        gridSettings,
+      )}
     >
       {twelve.map((i) => (
-        <div key={i} className="bg-red-800/20 h-full">
+        <div key={i} className="bg-red-800/20 h-full ">
           {i}
         </div>
       ))}
