@@ -6,7 +6,7 @@ const Divider: React.FC<DividerProps> = ({ height = 16 }) => {
   return (
     <div
       style={{ height: `${height}px` }}
-      className="border-l-2 border-black my-12"
+      className="border-l-[3px] border-black my-12"
     />
   );
 };

@@ -6,7 +6,7 @@ export default async function FooterImportantLinks() {
   if (!links?.length) return null;
 
   return (
-    <div className="flex flex-wrap items-center justify-center gap-10">
+    <div className="grid grid-cols-6 gap-4">
       {links.map((l) => (
         <a
           key={l.id}

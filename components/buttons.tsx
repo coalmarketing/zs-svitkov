@@ -5,11 +5,17 @@ interface ButtonProps {
   href?: string;
   external?: boolean;
   onClick?: () => void;
+  className?: string;
 }
 
-const ButtonInner: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const ButtonInner: React.FC<{
+  children: React.ReactNode;
+  className?: string;
+}> = ({ children, className }) => {
   return (
-    <div className="bg-brand hover:bg-brand-dark transition rounded-lg px-4 pt-2.25 py-2 min-w-75 font-semibold text-center w-fit ">
+    <div
+      className={`bg-brand hover:bg-brand-dark transition rounded-lg px-4 pt-2.25 py-2 font-semibold text-center ${className}`}
+    >
       {children}
     </div>
   );
@@ -20,20 +26,21 @@ export const Button: React.FC<ButtonProps> = ({
   href,
   external,
   onClick,
+  className,
 }) => {
   return href ? (
     external ? (
       <a href={href} target="_blank" rel="noopener noreferrer">
-        <ButtonInner>{children}</ButtonInner>
+        <ButtonInner className={className}>{children}</ButtonInner>
       </a>
     ) : (
       <a href={href}>
-        <ButtonInner>{children}</ButtonInner>
+        <ButtonInner className={className}>{children}</ButtonInner>
       </a>
     )
   ) : (
     <button onClick={onClick} className="hover:cursor-pointer">
-      <ButtonInner>{children}</ButtonInner>
+      <ButtonInner className={className}>{children}</ButtonInner>
     </button>
   );
 };

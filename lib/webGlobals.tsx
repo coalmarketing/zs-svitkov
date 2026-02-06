@@ -27,7 +27,6 @@ export function getUniversalPageMeta(code: string) {
 }
 
 export const navbarItems: NavbarItem[] = [
-  { label: "Domů", href: "/" },
   {
     label: "Škola",
     href: "",

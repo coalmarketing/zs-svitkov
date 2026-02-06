@@ -22,44 +22,52 @@ export default async function Home() {
   return (
     <main className="min-h-screen pb-20">
       <Header imageUrl={"/img/headers/home.webp"} homePage={true} />
-      <Section pt="5rem" pb="0" className="mt-10">
-        <h1 className="text-4xl xl:text-7xl font-extrabold mb-6 xl:mb-6">
-          ZŠ Svítkov
-        </h1>
-        <p className="text-xl xl:text-3xl font-bold space-grotesk">
-          škola, která otevírá dveře
-          <br />
-          novým možnostem
-        </p>
-        <div className="w-full mt-8">
-          <Button href="/nastenka">Nástěnka</Button>
+      <Section pt="1rem" pb="0">
+        <div className="col-span-8 col-start-3">
+          <h1 className="text-4xl xl:text-[125px] font-extrabold mb-6 xl:mb-6">
+            ZŠ Svítkov
+          </h1>
+          <p className="text-xl xl:text-[40px] leading-none font-bold space-grotesk">
+            škola, která otevírá dveře
+            <br />
+            novým možnostem
+          </p>
+        </div>
+        <div className="col-span-2 col-start-9">
+          <Button href="/nastenka" className="w-full text-[26px]">
+            Nástěnka
+          </Button>
         </div>
       </Section>
       <Section className="" pt="0" pb="0">
-        <Divider height={64} />
-      </Section>
-
-      <Section className="space-grotesk" pt="0" pb="0">
-        <h2 className="text-xl xl:text-3xl font-extrabold mb-6 xl:mb-6">
-          Vzděláváme žáky od roku 1924
-        </h2>
-        <div className="w-full grid grid-cols-3 gap-20 items-center">
-          <div className="col-span-2">
-            <ImageGallery images={images} className="mb-8" />
-          </div>
-          <div className="">
-            <h3 className="text-4xl font-bold space-grotesk">
-              Naše škola
-              <br />
-              na sítích
-            </h3>
-            <SocialButtons />
-          </div>
+        <div className="col-span-8 col-start-3">
+          <Divider height={100} />
         </div>
       </Section>
 
       <Section className="space-grotesk" pt="0" pb="0">
-        <div className="w-full md:w-2/3 mr-auto">
+        <div className="col-span-8 col-start-3 p-0">
+          <h2 className="text-xl xl:text-[40px] leading-none font-bold space-grotesk">
+            Vzděláváme žáky <br />
+            od roku 1924
+          </h2>
+        </div>
+
+        <div className="col-span-7 mt-10 mb-20">
+          <ImageGallery images={images} showThumbnails={false} />
+        </div>
+        <div className="col-span-2 col-start-9">
+          <h3 className="text-4xl font-bold space-grotesk">
+            Naše škola
+            <br />
+            na sítích
+          </h3>
+          <SocialButtons />
+        </div>
+      </Section>
+
+      <Section className="space-grotesk" pt="0" pb="0">
+        <div className="col-span-6 col-start-3">
           <Text>
             <strong>
               Základní škola Pardubice &ndash; Svítkov je moderní a přátelská
@@ -96,17 +104,20 @@ export default async function Home() {
             rodičů, přátel a&nbsp;dětí školy.
           </Text>
         </div>
-        <Divider height={120} />
-        <div className="flex flex-col gap-2">
-          <Image
-            src="/img/podpis.svg"
-            alt="Podpis ředitelky školy"
-            width={200}
-            height={100}
-            className="object-contain"
-          />
-          <p>Ředitelka školy</p>
-          <p>Ing. Monika Dobruská</p>
+        <div className="col-span-2 col-start-3">
+          <Divider height={120} />
+          <div className="w-full">
+            <div className="w-full h-20 relative">
+              <Image
+                src="/img/podpis.svg"
+                alt="Podpis ředitelky školy"
+                fill
+                className="object-contain"
+              />
+            </div>
+            <p className="text-[18px]">Ředitelka školy</p>
+            <p className="text-[18px]">Ing. Monika Dobruská</p>
+          </div>
         </div>
       </Section>
     </main>

@@ -1,3 +1,5 @@
+import { Container, Grid12 } from "./layout/grid12";
+
 interface SectionProps {
   children: React.ReactNode;
   className?: string;
@@ -8,13 +10,15 @@ interface SectionProps {
 const Section = ({ children, className, pt, pb }: SectionProps) => {
   return (
     <section
-      className={`mx-auto max-w-7xl px-16 ${className}`}
+      className={`${className}`}
       style={{
         paddingTop: pt ? pt : "4rem",
         paddingBottom: pb ? pb : "4rem",
       }}
     >
-      {children}
+      <Container>
+        <Grid12>{children}</Grid12>
+      </Container>
     </section>
   );
 };

@@ -33,7 +33,7 @@ export default function ImageGallery({
       const n = safeImages.length;
       return ((i % n) + n) % n;
     },
-    [hasImages, safeImages.length]
+    [hasImages, safeImages.length],
   );
 
   const [index, setIndex] = useState(() => clampIndex(initialIndex));
@@ -45,11 +45,11 @@ export default function ImageGallery({
 
   const prev = useCallback(
     () => setIndex((i) => clampIndex(i - 1)),
-    [clampIndex]
+    [clampIndex],
   );
   const next = useCallback(
     () => setIndex((i) => clampIndex(i + 1)),
-    [clampIndex]
+    [clampIndex],
   );
 
   const open = useCallback(() => {
@@ -108,7 +108,7 @@ export default function ImageGallery({
                 draggable={false}
               />
               {/* subtle gradient for caption readability */}
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-linear-to-t from-black/60 to-transparent" />
+              {/* <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-linear-to-t from-black/60 to-transparent" />
               <div className="pointer-events-none absolute inset-x-0 bottom-0 p-3">
                 <div className="text-sm font-medium text-white/90 line-clamp-1">
                   {current.alt}
@@ -116,7 +116,7 @@ export default function ImageGallery({
                 <div className="text-xs text-white/60">
                   {index + 1} / {safeImages.length}
                 </div>
-              </div>
+              </div> */}
             </button>
           )}
 

@@ -2,6 +2,7 @@ import Image from "next/image";
 import DesktopNav from "./navbar";
 import { navbarItems } from "@/lib/webGlobals";
 import Link from "next/link";
+import { Container, Grid12 } from "./layout/grid12";
 
 interface HeaderProps {
   imageUrl: string;
@@ -11,26 +12,36 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ imageUrl, homePage = false }) => {
   return (
     <header className="w-full relative mb-12">
-      {homePage && (
-        <div className="absolute w-full max-w-7xl mx-auto top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center lg:justify-end z-10">
-          <Link href="/">
-            <Image
-              src="./img/logo.svg"
-              alt="Logo ZŠ Svitkov"
-              width={250}
-              height={250}
-              className="opacity-90"
-            />
-          </Link>
-        </div>
-      )}
       <div
         className={`relative w-full flex items-center justify-center -mb-10 -z-10`}
-        style={{ height: homePage ? "400px" : "210px" }}
+        style={{
+          height: homePage ? "400px" : "210px",
+          background: `url(${imageUrl}) center/cover no-repeat`,
+        }}
       >
-        <Image src={imageUrl} alt="" className="object-cover" fill />
+        {homePage && (
+          <Container>
+            <Grid12>
+              <div className="col-span-12 lg:col-span-2 lg:col-start-9">
+                <Link href="/">
+                  <Image
+                    src="./img/logo.svg"
+                    alt="Logo ZŠ Svitkov"
+                    width={250}
+                    height={250}
+                    className="opacity-90"
+                  />
+                </Link>
+              </div>
+            </Grid12>
+          </Container>
+        )}
       </div>
-      <DesktopNav items={navbarItems} />
+      <Container>
+        <Grid12>
+          <DesktopNav items={navbarItems} />
+        </Grid12>
+      </Container>
     </header>
   );
 };

@@ -50,6 +50,6 @@ h6,
 
   transform: translateY(-50%) scaleY(0.8);
 
-  background: url("../public/img/nav-bg.png") no-repeat center center;
-  background-size: cover;
+  background: url("../public/img/nav-bg.png") center / contain no-repeat;
+  background-size: contain;
 }

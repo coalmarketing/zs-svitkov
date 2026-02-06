@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import { BiLinkExternal } from "react-icons/bi";
 
 type NavbarSubItem = {
@@ -42,7 +42,7 @@ const DesktopNav: React.FC<NavbarProps> = ({ items }) => {
   );
 
   return (
-    <nav className="navbar w-3/4 h-20 mx-auto hidden lg:flex items-center space-grotesk pl-12 pr-24">
+    <nav className="lg:col-span-10 lg:col-start-2 navbar h-20 hidden lg:flex items-center space-grotesk pl-12 pr-24">
       <ul className="w-full flex flex-row flex-nowrap justify-between">
         {items.map((item, idx) => (
           <li
