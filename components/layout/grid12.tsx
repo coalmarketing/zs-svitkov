@@ -31,9 +31,7 @@ export function DisplayGrid12({ gridSettings = globalGridSettings }) {
       )}
     >
       {twelve.map((i) => (
-        <div key={i} className="bg-red-800/20 h-full ">
-          {i}
-        </div>
+        <div key={i} className="bg-red-800/5 h-full "></div>
       ))}
     </div>
   );

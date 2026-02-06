@@ -51,27 +51,24 @@ export default function HistoryTimelineClient({
 
   return (
     <>
-      <div className="max-w-2xl mx-auto">
+      <div className="col-span-5 col-start-5">
         {events.map((e, idx) => (
-          <div key={e.id} className="grid grid-cols-[24px_1fr] gap-4">
+          <div key={e.id} className="grid grid-cols-[24px_1fr]">
             {/* Timeline spine */}
-            <div className="relative flex justify-center">
+            <div className="relative flex justify-center -translate-7">
               <span className="absolute top-2 h-4 w-4 rounded-full border-2 border-black bg-black" />
               {idx !== events.length - 1 ? (
                 <span className="absolute top-5 -bottom-10 w-0.75 bg-black" />
               ) : (
                 <>
-                  <span className="absolute top-5 bottom-1/2 w-0.75 bg-black" />
-                  <span className="absolute top-[52%] bottom-[46%] w-0.75 bg-black opacity-80" />
-                  <span className="absolute top-[56%] bottom-[42%] w-0.75 bg-black opacity-60" />
-                  <span className="absolute top-[60%] bottom-[38%] w-0.75 bg-black opacity-40" />
-                  <span className="absolute top-[64%] bottom-[34%] w-0.75 bg-black opacity-20" />
+                  <span className="absolute -bottom-10 h-4 w-4 rounded-full border-2 border-black bg-black" />{" "}
+                  <span className="absolute top-5 -bottom-10 w-0.75 bg-black" />
                 </>
               )}
             </div>
 
             {/* Content */}
-            <div className="pb-20 px-10">
+            <div className="pb-20 ">
               <div className="text-brand font-extrabold text-4xl">{e.year}</div>
               <p className="text-base leading-relaxed">{e.text}</p>
 

@@ -16,11 +16,18 @@ export default async function DocumentsPage() {
       <Header imageUrl={"/img/headers/home.webp"} />
       <PageHeading>Dokumenty ke stažení</PageHeading>
 
-      <Section>
-        <div className="flex flex-col gap-10">
-          {sorted.map((group) => (
-            <section key={group.category.id}>
-              <h2 className="text-2xl font-bold mb-4 pl-3 border-l-2 border-black">
+      <Section pt="20px">
+        <div className="col-span-8 col-start-3 gap-x-4 gap-y-16 grid grid-cols-8">
+          {sorted.map((group, index) => (
+            <section
+              key={group.category.id}
+              className={
+                index % 2 === 0
+                  ? "col-start-1 col-span-3"
+                  : "col-start-6 col-span-3"
+              }
+            >
+              <h2 className="text-2xl font-bold mb-4 vertical-line p-0">
                 {group.category.name}
               </h2>
 

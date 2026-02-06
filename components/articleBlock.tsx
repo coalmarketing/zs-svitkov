@@ -29,8 +29,8 @@ const ArticleBlock: React.FC<ArticleBlockProps> = ({
   expanded = false,
 }) => {
   return (
-    <div className="w-full p-10 space-grotesk">
-      <div className="border-l-2 border-black px-3 mb-6">
+    <div className="w-full space-grotesk">
+      <div className="vertical-line">
         <div className="flex flex-row flex-nowrap gap-5 items-center mb-2">
           <p className="text-brand text-lg font-semibold space-grotesk">
             {new Date(date).toLocaleDateString("cs-CZ", {
@@ -46,13 +46,13 @@ const ArticleBlock: React.FC<ArticleBlockProps> = ({
           </div>
         </div>
         <h3 className="space-grotesk font-bold text-3xl">{title}</h3>
-        <div className="flex items-center gap-4 mt-2">
+        <div className="flex items-center gap-4 mt-2 mb-10">
           {hasImage && <LuImage size={28} />}
           {hasAttachment && <PiPaperclipLight size={28} />}
         </div>
       </div>
 
-      <div className="px-3">
+      <div className="">
         <div className="text-black prose prose-sm prose-p:leading-tight prose-a:text-brand prose-a:underline max-w-none">
           {children}
         </div>

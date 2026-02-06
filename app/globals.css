@@ -64,3 +64,18 @@ h6,
   height: 30px;
   background-color: var(--color-accent);
 }
+
+.vertical-line {
+  position: relative;
+}
+
+.vertical-line::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -1rem;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 100%;
+  background-color: black;
+}

@@ -115,11 +115,11 @@ export default function NewsFilters({
   }
 
   return (
-    <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end">
-      <div className="flex-1">
-        <label className="mb-1 block text-sm font-medium">Kategorie</label>
+    <div className="mb-6 col-span-8 col-start-3 flex flex-col md:flex-row md:items-center justify-between gap-16">
+      <div className="w-1/3">
+        <label className="sr-only">Kategorie</label>
         <select
-          className="bg-brand hover:bg-brand-dark transition rounded-lg px-4 py-2.5 min-w-75 w-full space-grotesk font-semibold text-left"
+          className="bg-brand hover:bg-brand-dark transition rounded-lg px-4 py-2.5 w-full space-grotesk font-semibold text-left"
           value={selectedTop?.code ?? ""}
           onChange={(e) => onTopChange(e.target.value)}
         >
@@ -133,12 +133,10 @@ export default function NewsFilters({
 
       {selectedTop && (
         <>
-          <div className="flex-1">
-            <label className="mb-1 block text-sm font-medium">
-              Podkategorie
-            </label>
+          <div className="w-1/3">
+            <label className="sr-only">Podkategorie</label>
             <select
-              className="bg-brand hover:bg-brand-dark transition rounded-lg px-4 py-2.5 min-w-75 w-full space-grotesk font-semibold text-left"
+              className="bg-brand hover:bg-brand-dark transition rounded-lg px-4 py-2.5 w-full space-grotesk font-semibold text-left"
               value={selectedSub?.code ?? ""}
               onChange={(e) => onSubChange(e.target.value)}
             >
@@ -150,29 +148,31 @@ export default function NewsFilters({
             </select>
           </div>
 
-          {labelOptions.length > 1 && (
-            <div className="flex-1">
-              <label className="mb-1 block text-sm font-medium">Štítky</label>
-              <select
-                className="bg-brand hover:bg-brand-dark transition rounded-lg px-4 py-2.5 min-w-75 w-full space-grotesk font-semibold text-center"
-                value={currentLabelCode ?? ""}
-                onChange={(e) => onLabelChange(e.target.value)}
-                disabled={labelOptions.length <= 1}
-              >
-                {labelOptions.map((o) => (
-                  <option key={o.code || "all"} value={o.code}>
-                    {o.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-          )}
+          <div className="w-1/3">
+            {labelOptions.length > 1 && (
+              <>
+                <label className="sr-only">Štítky</label>
+                <select
+                  className="bg-brand hover:bg-brand-dark transition rounded-lg px-4 py-2.5 w-full space-grotesk font-semibold text-center"
+                  value={currentLabelCode ?? ""}
+                  onChange={(e) => onLabelChange(e.target.value)}
+                  disabled={labelOptions.length <= 1}
+                >
+                  {labelOptions.map((o) => (
+                    <option key={o.code || "all"} value={o.code}>
+                      {o.name}
+                    </option>
+                  ))}
+                </select>{" "}
+              </>
+            )}
+          </div>
         </>
       )}
 
-      <Button onClick={() => push({ categoryCode: "", labelCode: "" })}>
+      {/* <Button onClick={() => push({ categoryCode: "", labelCode: "" })}>
         Zrušit filtry
-      </Button>
+      </Button> */}
     </div>
   );
 }

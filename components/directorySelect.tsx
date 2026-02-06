@@ -23,14 +23,14 @@ export default function DirectorySelect({
   }
 
   return (
-    <div className="mb-6">
+    <div className="mb-6 w-1/3">
       <label className="sr-only">Rozcestník</label>
       <select
-        className="bg-brand hover:bg-brand-dark transition rounded-lg px-4 py-2.5 min-w-75 space-grotesk font-semibold text-center"
+        className="bg-brand hover:bg-brand-dark transition rounded-lg px-4 py-2.5 space-grotesk font-semibold text-center w-full"
         value={current ?? ""}
         onChange={(e) => setDir(e.target.value)}
       >
-        <option value="">Zobrazit vše</option>
+        <option value="">Vyberte podkategorii</option>
         {items.map((i) => (
           <option key={i.code} value={i.code}>
             {i.title}

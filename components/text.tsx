@@ -24,8 +24,7 @@ export const PageHeading: React.FC<HeadingProps> = ({ children }) => {
 
 export const Heading: React.FC<HeadingProps> = ({ children }) => {
   return (
-    <div className="relative mb-4">
-      <div className="absolute -left-4 h-full bg-black w-0.5"></div>
+    <div className="relative mb-4 vertical-line">
       <h2 className="text-2xl md:text-3xl font-bold leading-8 py-2">
         {children}
       </h2>

@@ -30,17 +30,22 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   return href ? (
     external ? (
-      <a href={href} target="_blank" rel="noopener noreferrer">
-        <ButtonInner className={className}>{children}</ButtonInner>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+      >
+        <ButtonInner>{children}</ButtonInner>
       </a>
     ) : (
-      <a href={href}>
-        <ButtonInner className={className}>{children}</ButtonInner>
+      <a href={href} className={className}>
+        <ButtonInner>{children}</ButtonInner>
       </a>
     )
   ) : (
-    <button onClick={onClick} className="hover:cursor-pointer">
-      <ButtonInner className={className}>{children}</ButtonInner>
+    <button onClick={onClick} className={`hover:cursor-pointer ${className}`}>
+      <ButtonInner>{children}</ButtonInner>
     </button>
   );
 };

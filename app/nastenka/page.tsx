@@ -87,9 +87,9 @@ const PinnedArticle = ({
           {images.length > 0 && <GalleryClient images={images} />}
         </ArticleBlock>
 
-        <div className="flex items-center justify-between px-10 pb-10">
+        <div className="flex items-center justify-between pt-4 pb-10">
           <a
-            className="text-xs font-semibold underline-offset-4 bg-brand rounded-md px-2 py-1 text-white hover:bg-brand-dark transition-colors"
+            className="text-xs font-semibold underline underline-offset-4 py-1 text-brand hover:text-brand-dark transition-colors"
             href={closeHref}
           >
             ✕ Skrýt aktualitu
@@ -144,10 +144,14 @@ const NoticeboardPage = async ({
 
       <Section>
         {/* Pinned opened article */}
-        {opened && <PinnedArticle item={opened} baseParams={params} />}
+        {opened && (
+          <div className="col-span-10 col-start-3">
+            <PinnedArticle item={opened} baseParams={params} />
+          </div>
+        )}
 
         {/* List */}
-        <div className="mb-6 grid grid-cols-2 gap-4">
+        <div className="col-span-10 col-start-3 grid grid-cols-2 gap-4 gap-y-16">
           {items.map((item) => (
             <ArticleBlock
               key={item.id}

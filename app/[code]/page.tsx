@@ -94,7 +94,7 @@ export default async function UniversalPageRoute({
 
       <Section pt={"0"} pb={"8rem"}>
         {/* Top buttons */}
-        <div className="mb-6 flex flex-wrap gap-3 justify-center">
+        <div className="col-span-8 col-start-3 flex flex-wrap gap-16 justify-center">
           {(page.directory?.length ?? 0) > 0 && (
             <DirectorySelect
               items={page.directory.map((d) => ({
@@ -104,11 +104,14 @@ export default async function UniversalPageRoute({
               current={dir}
             />
           )}
-          <Button href="/kontakty">Kontakty</Button>
+          <Button href="/kontakty" className="w-1/3">
+            Kontakty
+          </Button>
 
           {matchedNewsCategoryCode && (
             <Button
               href={`/nastenka?page=1&categoryCode=${encodeURIComponent(matchedNewsCategoryCode)}`}
+              className="w-1/3"
             >
               Nástěnka
             </Button>
@@ -119,16 +122,16 @@ export default async function UniversalPageRoute({
 
         {/* Optional gallery */}
         {galleryImages.length > 0 && (
-          <div className="mb-8">
+          <div className="col-span-8 col-start-3 mb-8">
             <ImageGallery images={galleryImages} />
           </div>
         )}
 
         {/* Blocks (full or filtered via directory selection) */}
-        <div className="flex flex-col gap-10">
+        <div className="col-span-8 col-start-3 flex flex-col gap-4 gap-y-16">
           {blocksToRender.map((b, idx) => (
             <div key={`${b.heading}-${idx}`}>
-              <h2 className="text-2xl font-bold mb-3 pl-3 border-l-2 border-black">
+              <h2 className="text-2xl font-bold mb-3 vertical-line">
                 {b.heading}
               </h2>
               <div
@@ -141,7 +144,10 @@ export default async function UniversalPageRoute({
 
         {/* Documents */}
         {(page.documents?.length ?? 0) > 0 && (
-          <div className="mt-10 flex flex-col gap-3">
+          <div className="col-span-8 col-start-3 mt-10 flex flex-col gap-4">
+            <h2 className="text-2xl font-bold mb-3 vertical-line">
+              Dokumenty ke stažení
+            </h2>
             {page.documents.map((doc, idx) => (
               <DownloadButton key={doc.url + " " + idx} fileUrl={doc.url}>
                 {doc.name}
@@ -152,10 +158,8 @@ export default async function UniversalPageRoute({
 
         {/* Links */}
         {(page.links?.length ?? 0) > 0 && (
-          <div className="mt-10">
-            <h2 className="text-2xl font-bold mb-3 pl-3 border-l-2 border-black">
-              Odkazy
-            </h2>
+          <div className="col-span-8 col-start-3 mt-10">
+            <h2 className="text-2xl font-bold mb-3 vertical-line">Odkazy</h2>
             <ul className="list-disc pl-6">
               {page.links.map((l, idx) => (
                 <li key={l.url + " " + idx}>
