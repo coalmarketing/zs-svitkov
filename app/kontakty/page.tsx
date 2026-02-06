@@ -1,7 +1,6 @@
 import Header from "@/components/header";
 import Section from "@/components/section";
 import { Heading, PageHeading } from "@/components/text";
-import Link from "next/link";
 
 import {
   getContactsGrouped,
@@ -13,7 +12,7 @@ import { Button } from "@/components/buttons";
 
 function ContactCard({ person }: { person: ContactPerson }) {
   return (
-    <div className="w-full text-sm">
+    <div className="w-full text-sm ">
       {person.position ? (
         <>
           <div className="font-bold text-brand">{person.position}</div>
@@ -22,16 +21,19 @@ function ContactCard({ person }: { person: ContactPerson }) {
         <div className="font-bold text-brand">{person.name}</div>
       )}
 
-      <div className="grid gap-1 mt-1 grid-cols-5">
-        {person.position && <p className="">{person.name}</p>}
+      <div className="mt-1 grid grid-cols-8 gap-4">
+        {person.position && <p className="col-span-2">{person.name}</p>}
         {person.email && (
-          <a className="text-black underline" href={`mailto:${person.email}`}>
+          <a
+            className="text-black underline col-span-2"
+            href={`mailto:${person.email}`}
+          >
             {person.email}
           </a>
         )}
         {person.phone && (
           <a
-            className="text-black underline"
+            className="text-black underline col-span-2"
             href={`tel:${person.phone.replace(/\s+/g, "")}`}
           >
             {person.phone}
@@ -44,7 +46,7 @@ function ContactCard({ person }: { person: ContactPerson }) {
 
 function SchoolInfoBlock({ info }: { info: SchoolInfo }) {
   return (
-    <div className="text-sm grid grid-cols-2 gap-6">
+    <div className="text-sm grid grid-cols-2 gap-4">
       <div>
         <div className="">
           <h4 className="font-bold text-brand">Adresa</h4>
@@ -111,9 +113,11 @@ function GenericItems({
     <div className="text-sm">
       <div className="font-bold text-brand">{heading}</div>
 
-      <div className="grid gap-1 mt-1 grid-cols-5">
+      <div className="grid mt-1 grid-cols-8 gap-4">
         {items.map((s) => (
-          <p key={s}>{s}</p>
+          <p key={s} className="col-span-2">
+            {s}
+          </p>
         ))}
       </div>
     </div>
@@ -179,8 +183,10 @@ export default async function ContactsPage() {
       <PageHeading>Kontakty</PageHeading>
 
       <Section pt={"2em"}>
-        <Heading>Důležité kontakty</Heading>
-        <div className="flex flex-col gap-6 mb-12">
+        <div className="col-span-8 col-start-3">
+          <Heading>Důležité kontakty</Heading>
+        </div>
+        <div className="col-span-8 col-start-3 flex flex-col gap-6 mb-12">
           {genericItems.length > 0 ? (
             genericItems.map((g) => (
               <GenericItems
@@ -196,7 +202,7 @@ export default async function ContactsPage() {
           )}
         </div>
 
-        <div className="flex flex-col gap-10">
+        <div className="col-span-8 col-start-3 flex flex-col gap-10">
           {sorted.map((g) => (
             <ContactsGroupSection key={g.category.id} group={g} />
           ))}
