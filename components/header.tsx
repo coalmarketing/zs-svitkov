@@ -12,18 +12,19 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ imageUrl, homePage = false }) => {
   return (
     <header className="w-full relative mb-12">
-      <div
-        className={`relative w-full flex items-center justify-center -mb-10 -z-10`}
-        style={{
-          height: homePage ? "400px" : "210px",
-          background: `url(${imageUrl}) center/cover no-repeat`,
-        }}
-      >
-        {homePage && (
-          <Container>
-            <Grid12>
-              <div className="col-span-12 lg:col-span-2 lg:col-start-9">
-                <Link href="/">
+      <Link href="/">
+        <div
+          className={`relative w-full flex items-center justify-center -mb-10 -z-10`}
+          style={{
+            height: homePage ? "400px" : "210px",
+            background: `url(${imageUrl}) center/cover no-repeat`,
+          }}
+        >
+          {homePage && (
+            <Container>
+              <Grid12>
+                <div className="col-span-12 lg:col-span-2 lg:col-start-9">
+                  {/* <Link href="/"> */}
                   <Image
                     src="./img/logo.svg"
                     alt="Logo ZŠ Svitkov"
@@ -31,12 +32,13 @@ const Header: React.FC<HeaderProps> = ({ imageUrl, homePage = false }) => {
                     height={250}
                     className="opacity-90"
                   />
-                </Link>
-              </div>
-            </Grid12>
-          </Container>
-        )}
-      </div>
+                  {/* </Link> */}
+                </div>
+              </Grid12>
+            </Container>
+          )}
+        </div>
+      </Link>
       <Container>
         <Grid12>
           <DesktopNav items={navbarItems} />

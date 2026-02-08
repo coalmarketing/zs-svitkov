@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
@@ -97,7 +98,14 @@ const DesktopNav: React.FC<NavbarProps> = ({ items }) => {
                         >
                           {
                             <span className="flex flex-row flex-nowrap gap-2 items-center justify-start">
-                              {sub.label + " "} <BiLinkExternal />
+                              {sub.label + " "}{" "}
+                              <Image
+                                src="/img/icons/Arrow_R.svg"
+                                alt="External link"
+                                width={16}
+                                height={16}
+                                className="-rotate-45"
+                              />
                             </span>
                           }
                         </a>

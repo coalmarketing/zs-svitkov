@@ -9,6 +9,7 @@ const poppins = Poppins({
 import SocialButtons from "./socialButtons";
 import FooterImportantLinks from "./footerImportantLinks";
 import { Container, Grid12 } from "./layout/grid12";
+import Image from "next/image";
 
 const Footer = () => {
   return (
@@ -21,7 +22,7 @@ const Footer = () => {
           className="w-full h-full object-fill"
         />
       </div>
-      <div className="h-200 lg:h-100 bg-slate-200 relative flex items-center">
+      <div className="h-200 lg:h-100  relative flex items-center">
         <Container>
           <Grid12>
             <div className="col-span-6 col-start-3">
@@ -29,7 +30,7 @@ const Footer = () => {
               <FooterImportantLinks />
             </div>
             <div className="col-span-3 col-start-10">
-              <SocialButtons />
+              <SocialButtons divideBy={3} />
             </div>
 
             <div className="col-span-6 col-start-3">
@@ -50,12 +51,33 @@ const Footer = () => {
       </div>
 
       <div
-        className={`w-full h-10 px-40 bg-black text-white flex flex-row flex-nowrap justify-between items-center text-xs ${poppins.variable} overflow-hidden`}
+        className={`w-full h-10 bg-black text-white flex flex-row flex-nowrap justify-between items-center text-xs ${poppins.variable} overflow-hidden`}
       >
-        <div className="flex flex-row items-center gap-2 font-extralight">
-          <span className="text-3xl ">&copy;</span> {new Date().getFullYear()}
-        </div>
-        <div className="font-extralight lowercase">Vytvoříme web i Vám</div>
+        <Container>
+          <Grid12>
+            <div className="col-span-3 col-start-1 flex items-center gap-2">
+              <span className="text-3xl ">
+                <Image
+                  src="/img/icons/copyright-light.svg"
+                  alt="Copyright"
+                  width={20}
+                  height={20}
+                />
+              </span>{" "}
+              copyright {new Date().getFullYear()}
+            </div>
+            <div className="col-span-3 col-start-10 font-extralight lowercase flex items-center justify-end gap-2">
+              <p className="mb-0">Vytvoříme web i Vám</p>
+              <Image
+                src="/img/matfix_test_black.svg"
+                alt="Matfix"
+                width={50}
+                height={20}
+                className="object-contain object-center"
+              />{" "}
+            </div>
+          </Grid12>
+        </Container>
       </div>
     </footer>
   );

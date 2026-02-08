@@ -61,7 +61,7 @@ export default async function SchoolMagazinePage({
       <PageHeading>Školní časopis</PageHeading>
 
       <Section pt="20px">
-        <div className="col-span-8 col-start-3">
+        <div className="col-span-3 col-start-3">
           {years.length > 0 && (
             <SchoolYearSelect years={years} current={activeYear} />
           )}

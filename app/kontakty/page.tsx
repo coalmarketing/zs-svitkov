@@ -9,6 +9,7 @@ import {
   type SchoolInfo,
 } from "@/lib/api/endpoints/contacts";
 import { Button } from "@/components/buttons";
+import Link from "next/link";
 
 function ContactCard({ person }: { person: ContactPerson }) {
   return (
@@ -71,8 +72,14 @@ function SchoolInfoBlock({ info }: { info: SchoolInfo }) {
 
         {info.cashDeskUrl && (
           <div className="mt-8">
-            <h4 className="font-bold text-brand mb-2">Školní pokladna</h4>
-            <Button href={info.cashDeskUrl}>Vstup do školní pokladny</Button>
+            <h4 className="font-bold text-brand">Školní pokladna</h4>
+            <a
+              href={info.cashDeskUrl}
+              className="text-black underline hover:text-brand transition"
+              target="_blank"
+            >
+              Vstup do školní pokladny
+            </a>
           </div>
         )}
       </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 
 export interface GalleryImage {
@@ -80,8 +81,8 @@ export default function ImageGallery({
       {/* Carousel */}
       <div
         className={[
-          "relative overflow-hidden rounded-2xl border border-white/10 bg-black/20",
-          "shadow-sm",
+          "relative overflow-hidden rounded-[2.5rem] bg-black/20",
+          ,
         ].join(" ")}
       >
         <div className={`relative w-full ${aspectClassName}`}>
@@ -127,17 +128,24 @@ export default function ImageGallery({
             disabled={!hasImages || safeImages.length < 2}
             aria-label="Previous image"
             className={[
-              "absolute left-2 top-1/2 -translate-y-1/2",
+              "absolute left-6 bottom-6",
               "inline-flex items-center justify-center",
               "h-10 w-10 rounded-full",
-              "bg-black/45 text-white",
+              "text-white",
               "backdrop-blur border border-white/10",
               "shadow-sm transition",
-              "hover:bg-black/60 focus:outline-none focus:ring-2 focus:ring-white/30",
+              "focus:outline-none focus:ring-2 focus:ring-white/30",
               "disabled:opacity-40 disabled:cursor-not-allowed",
             ].join(" ")}
           >
-            <ChevronLeftIcon className="h-5 w-5" />
+            <Image
+              src="/img/icons/Arrow_L.svg"
+              alt="Previous"
+              width={40}
+              height={40}
+              className="hover:scale-105 transition-all"
+            />
+            {/* <ChevronLeftIcon className="h-5 w-5" /> --- IGNORE --- */}
           </button>
 
           {/* Right arrow */}
@@ -147,17 +155,24 @@ export default function ImageGallery({
             disabled={!hasImages || safeImages.length < 2}
             aria-label="Next image"
             className={[
-              "absolute right-2 top-1/2 -translate-y-1/2",
+              "absolute right-6 bottom-6",
               "inline-flex items-center justify-center",
               "h-10 w-10 rounded-full",
-              "bg-black/45 text-white",
+              "text-white",
               "backdrop-blur border border-white/10",
               "shadow-sm transition",
-              "hover:bg-black/60 focus:outline-none focus:ring-2 focus:ring-white/30",
+              "focus:outline-none focus:ring-2 focus:ring-white/30",
               "disabled:opacity-40 disabled:cursor-not-allowed",
             ].join(" ")}
           >
-            <ChevronRightIcon className="h-5 w-5" />
+            <Image
+              src="/img/icons/Arrow_R.svg"
+              alt="Next"
+              width={40}
+              height={40}
+              className="hover:scale-105 transition-all"
+            />
+            {/* <ChevronRightIcon className="h-5 w-5" /> --- IGNORE --- */}
           </button>
         </div>
       </div>

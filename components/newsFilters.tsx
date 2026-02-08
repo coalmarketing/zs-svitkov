@@ -2,6 +2,7 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Button } from "./buttons";
+import Image from "next/image";
 
 export type Label = { id: number; code: string; name: string };
 type Subcategory = { id: number; code: string; name: string; labels?: Label[] };
@@ -116,11 +117,14 @@ export default function NewsFilters({
 
   return (
     <div className="mb-6 col-span-8 col-start-3 flex flex-col md:flex-row md:items-center justify-between gap-16">
-      <div className="w-1/3">
+      <div className="w-1/3 relative">
         <label className="sr-only">Kategorie</label>
         <select
-          className="bg-brand hover:bg-brand-dark transition rounded-lg px-4 py-2.5 w-full space-grotesk font-semibold text-left"
-          value={selectedTop?.code ?? ""}
+          className="bg-brand hover:bg-brand-dark transition rounded-lg
+             px-4 py-2.5 min-h-11 w-full
+             appearance-none 
+             space-grotesk font-semibold text-left"
+          value={selectedSub?.code ?? selectedTop?.code ?? ""}
           onChange={(e) => onTopChange(e.target.value)}
         >
           {topOptions.map((o) => (
@@ -129,14 +133,24 @@ export default function NewsFilters({
             </option>
           ))}
         </select>
+        <Image
+          src={"/img/icons/Arrow_D.svg"}
+          alt="Arrow"
+          width={24}
+          height={24}
+          className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/70"
+        />
       </div>
 
       {selectedTop && (
         <>
-          <div className="w-1/3">
+          <div className="w-1/3 relative">
             <label className="sr-only">Podkategorie</label>
             <select
-              className="bg-brand hover:bg-brand-dark transition rounded-lg px-4 py-2.5 w-full space-grotesk font-semibold text-left"
+              className="bg-brand hover:bg-brand-dark transition rounded-lg
+             px-4 py-2.5 min-h-11 w-full
+             appearance-none 
+             space-grotesk font-semibold text-left"
               value={selectedSub?.code ?? ""}
               onChange={(e) => onSubChange(e.target.value)}
             >
@@ -146,14 +160,24 @@ export default function NewsFilters({
                 </option>
               ))}
             </select>
+            <Image
+              src={"/img/icons/Arrow_D.svg"}
+              alt="Arrow"
+              width={24}
+              height={24}
+              className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/70"
+            />
           </div>
 
-          <div className="w-1/3">
+          <div className="w-1/3 relative">
             {labelOptions.length > 1 && (
               <>
                 <label className="sr-only">Štítky</label>
                 <select
-                  className="bg-brand hover:bg-brand-dark transition rounded-lg px-4 py-2.5 w-full space-grotesk font-semibold text-center"
+                  className="bg-brand hover:bg-brand-dark transition rounded-lg
+             px-4 py-2.5 min-h-11 w-full
+             appearance-none 
+             space-grotesk font-semibold text-left"
                   value={currentLabelCode ?? ""}
                   onChange={(e) => onLabelChange(e.target.value)}
                   disabled={labelOptions.length <= 1}
@@ -166,6 +190,13 @@ export default function NewsFilters({
                 </select>{" "}
               </>
             )}
+            <Image
+              src={"/img/icons/Arrow_D.svg"}
+              alt="Arrow"
+              width={24}
+              height={24}
+              className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/70"
+            />
           </div>
         </>
       )}

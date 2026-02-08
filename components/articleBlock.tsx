@@ -3,6 +3,7 @@ import { LuImage } from "react-icons/lu";
 import { PiPaperclipLight } from "react-icons/pi";
 import Tag from "./tag";
 import { Label } from "./newsFilters";
+import Image from "next/image";
 
 interface ArticleBlockProps {
   title: string;
@@ -47,8 +48,27 @@ const ArticleBlock: React.FC<ArticleBlockProps> = ({
         </div>
         <h3 className="space-grotesk font-bold text-3xl">{title}</h3>
         <div className="flex items-center gap-4 mt-2 mb-10">
-          {hasImage && <LuImage size={28} />}
-          {hasAttachment && <PiPaperclipLight size={28} />}
+          {hasImage && (
+            <div>
+              <Image
+                src={"/img/icons/Image_icon.svg"}
+                alt="Image"
+                width={24}
+                height={24}
+                className=""
+              />
+            </div>
+          )}
+          {hasAttachment && (
+            <div>
+              <Image
+                src="/img/icons/Doc_icon.svg"
+                alt="Attachment"
+                width={20}
+                height={20}
+              />
+            </div>
+          )}
         </div>
       </div>
 

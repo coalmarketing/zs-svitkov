@@ -62,7 +62,7 @@ export default async function Home() {
             <br />
             na sítích
           </h3>
-          <SocialButtons />
+          <SocialButtons divideBy={2} />
         </div>
       </Section>
 
