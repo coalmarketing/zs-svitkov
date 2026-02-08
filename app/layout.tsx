@@ -31,7 +31,7 @@ export default function RootLayout({
           className="fixed top-0 left-0 w-full h-full -z-20 pointer-events-none select-none"
           alt=""
         /> */}
-        <DisplayGrid12 />
+        {/* <DisplayGrid12 /> */}
         {children}
         <Footer />
       </body>
