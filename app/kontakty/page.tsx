@@ -8,8 +8,6 @@ import {
   type ContactPerson,
   type SchoolInfo,
 } from "@/lib/api/endpoints/contacts";
-import { Button } from "@/components/buttons";
-import Link from "next/link";
 
 function ContactCard({ person }: { person: ContactPerson }) {
   return (
@@ -23,7 +21,7 @@ function ContactCard({ person }: { person: ContactPerson }) {
       )}
 
       <div className="mt-1 grid grid-cols-8 gap-4">
-        {person.position && <p className="col-span-2">{person.name}</p>}
+        {person.name?.trim() && <p className="col-span-2">{person.name}</p>}
         {person.email && (
           <a
             className="text-black underline col-span-2"
@@ -157,14 +155,10 @@ function ContactsGroupSection({ group }: { group: ContactsGroup }) {
       {/* Defensive fallbacks */}
       {category.type === "contacts" &&
         (!group.contacts || group.contacts.length === 0) && (
-          <div className="rounded-md border p-4">
-            Žádné kontakty k zobrazení.
-          </div>
+          <div className="text-sm">Žádné kontakty k zobrazení.</div>
         )}
       {category.type === "info" && !group.info && (
-        <div className="rounded-md border p-4">
-          Informace nejsou k dispozici.
-        </div>
+        <div className="text-sm">Informace nejsou k dispozici.</div>
       )}
       {category.type === "generic" &&
         (!group.items || group.items.length === 0) && (
@@ -189,31 +183,28 @@ export default async function ContactsPage() {
       <Header imageUrl={"/img/headers/home.webp"} />
       <PageHeading>Kontakty</PageHeading>
 
-      <Section pt={"2em"}>
-        <div className="col-span-8 col-start-3">
-          <Heading>Důležité kontakty</Heading>
-        </div>
-        <div className="col-span-8 col-start-3 flex flex-col gap-6 mb-12">
-          {genericItems.length > 0 ? (
-            genericItems.map((g) => (
-              <GenericItems
-                key={g.category.id}
-                items={g.items ?? []}
-                heading={g.category.name}
-              />
-            ))
-          ) : (
-            <div className="rounded-md border p-4">
-              Žádné položky k zobrazení.
-            </div>
-          )}
-        </div>
-
+      <Section pt={"2em"} pb={"10em"}>
         <div className="col-span-8 col-start-3 flex flex-col gap-10">
           {sorted.map((g) => (
             <ContactsGroupSection key={g.category.id} group={g} />
           ))}
         </div>
+        {genericItems.length > 0 && (
+          <>
+            <div className="col-span-8 col-start-3">
+              <Heading>Další kontakty</Heading>
+            </div>
+            <div className="col-span-8 col-start-3 flex flex-col gap-6 mb-12">
+              {genericItems.map((g) => (
+                <GenericItems
+                  key={g.category.id}
+                  items={g.items ?? []}
+                  heading={g.category.name}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </Section>
     </main>
   );
