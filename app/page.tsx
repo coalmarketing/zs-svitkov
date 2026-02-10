@@ -17,8 +17,6 @@ export default async function Home() {
       alt: img.alt ?? `Fotografie školy ${i + 1}`,
     })) ?? [];
 
-  if (images.length === 0) return null;
-
   return (
     <main className="min-h-screen pb-20">
       <Header imageUrl={"/img/headers/home.webp"} homePage={true} />

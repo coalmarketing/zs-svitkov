@@ -15,7 +15,7 @@ function toAbsoluteUrl(url: string) {
 
 export async function getSchoolMagazineYears() {
   return zssFetch<string[]>(`/api/school-magazine/years`, {
-    revalidate: 3600,
+    cache: "no-store",
     tags: ["school-magazine-years"],
   });
 }
@@ -23,7 +23,7 @@ export async function getSchoolMagazineYears() {
 export async function getSchoolMagazine(schoolYear?: string) {
   const qs = schoolYear ? `?schoolYear=${encodeURIComponent(schoolYear)}` : "";
   const issues = await zssFetch<MagazineIssue[]>(`/api/school-magazine${qs}`, {
-    revalidate: 3600,
+    cache: "no-store",
     tags: [
       "school-magazine",
       schoolYear ? `school-magazine:${schoolYear}` : "school-magazine:current",

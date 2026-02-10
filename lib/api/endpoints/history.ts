@@ -16,7 +16,7 @@ function toAbsoluteUrl(url: string) {
 
 export async function getSchoolHistory() {
   const events = await zssFetch<HistoryEvent[]>(`/api/school-history`, {
-    revalidate: 3600,
+    cache: "no-store",
     tags: ["school-history"],
   });
 

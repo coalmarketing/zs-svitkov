@@ -25,11 +25,8 @@ export async function zssFetch<T>(
       "X-AUTH-TOKEN": TOKEN_VALUE,
       Accept: "application/json",
     },
-    cache: opts.cache ?? "force-cache",
-    next: {
-      revalidate: opts.revalidate ?? 60,
-      tags: opts.tags,
-    },
+    cache: "no-store",
+    ...opts,
   });
 
   if (!res.ok) {

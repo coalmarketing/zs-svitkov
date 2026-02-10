@@ -45,7 +45,7 @@ export type PageResponse = {
 
 export async function getPage(code: string) {
   return zssFetch<UniversalPage>(`/api/page/${encodeURIComponent(code)}`, {
-    revalidate: 300,
+    cache: "no-store",
     tags: [`page:${code}`],
   });
 }

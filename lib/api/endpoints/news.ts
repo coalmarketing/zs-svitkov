@@ -90,14 +90,14 @@ function qs(params: Record<string, string | number | undefined>) {
 /** Endpoints */
 export async function getNews(query: NewsQuery = {}) {
   return zssFetch<NewsListResponse>(`/api/news${qs(query)}`, {
-    revalidate: 60,
+    cache: "no-store",
     tags: ["news-list"],
   });
 }
 
 export async function getNewsDetail(slug: string) {
   return zssFetch<NewsItem>(`/api/news/${encodeURIComponent(slug)}`, {
-    revalidate: 300,
+    cache: "no-store",
     tags: ["news-detail", `news:${slug}`],
   });
 }

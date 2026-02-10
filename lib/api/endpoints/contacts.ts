@@ -41,7 +41,7 @@ export type ContactsGroup = {
 
 export async function getContactsGrouped() {
   return zssFetch<ContactsGroup[]>(`/api/contacts`, {
-    revalidate: 300,
+    cache: "no-store",
     tags: ["contacts"],
   });
 }

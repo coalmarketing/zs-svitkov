@@ -9,7 +9,7 @@ export type ImportantLink = {
 
 export async function getImportantLinks() {
   return zssFetch<ImportantLink[]>("/api/important-links", {
-    revalidate: 3600,
+    cache: "no-store",
     tags: ["important-links"],
   });
 }

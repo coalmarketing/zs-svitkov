@@ -38,7 +38,7 @@ export async function getDocumentsGrouped() {
 
 export async function getDocumentCategories() {
   return zssFetch<DocumentCategory[]>(`/api/document-categories`, {
-    revalidate: 3600,
+    cache: "no-store",
     tags: ["document-categories"],
   });
 }
@@ -47,7 +47,7 @@ export async function getDocumentsByCategory(categoryId: number) {
   const docs = await zssFetch<DocumentItem[]>(
     `/api/documents/by-category/${categoryId}`,
     {
-      revalidate: 3600,
+      cache: "no-store",
       tags: ["documents", `documents:${categoryId}`],
     },
   );
