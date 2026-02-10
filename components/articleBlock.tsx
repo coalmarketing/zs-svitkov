@@ -30,7 +30,7 @@ const ArticleBlock: React.FC<ArticleBlockProps> = ({
   expanded = false,
 }) => {
   return (
-    <div className="w-full space-grotesk">
+    <div className="w-full space-grotesk pr-20">
       <div className="vertical-line">
         <div className="flex flex-row flex-nowrap gap-5 items-center mb-2">
           <p className="text-brand text-lg font-semibold space-grotesk">

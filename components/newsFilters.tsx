@@ -188,15 +188,15 @@ export default function NewsFilters({
                     </option>
                   ))}
                 </select>{" "}
+                <Image
+                  src={"/img/icons/Arrow_D.svg"}
+                  alt="Arrow"
+                  width={24}
+                  height={24}
+                  className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/70"
+                />
               </>
             )}
-            <Image
-              src={"/img/icons/Arrow_D.svg"}
-              alt="Arrow"
-              width={24}
-              height={24}
-              className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/70"
-            />
           </div>
         </>
       )}
