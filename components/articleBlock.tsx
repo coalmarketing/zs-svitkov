@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { LuImage } from "react-icons/lu";
-import { PiPaperclipLight } from "react-icons/pi";
+
 import Tag from "./tag";
 import { Label } from "./newsFilters";
 import Image from "next/image";

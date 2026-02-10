@@ -70,7 +70,10 @@ export default function HistoryTimelineClient({
             {/* Content */}
             <div className="pb-20 ">
               <div className="text-brand font-extrabold text-4xl">{e.year}</div>
-              <p className="text-base leading-relaxed">{e.text}</p>
+              <div
+                className="text-base leading-relaxed prose prose-sm prose-p:leading-tight prose-a:text-brand prose-a:underline max-w-none"
+                dangerouslySetInnerHTML={{ __html: e.text }}
+              />
 
               {e.imageUrl && (
                 <button
