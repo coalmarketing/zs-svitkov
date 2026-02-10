@@ -65,7 +65,7 @@ const PinnedArticle = ({
           hasAttachment={item.documents?.length > 0}
           expanded
         >
-          <div dangerouslySetInnerHTML={{ __html: sanitise(item.content) }} />
+          <div dangerouslySetInnerHTML={{ __html: item.content }} />
 
           {/* Attachments */}
           {item.documents?.length > 0 && (
