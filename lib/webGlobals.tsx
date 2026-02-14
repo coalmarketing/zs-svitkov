@@ -32,16 +32,28 @@ export const navbarItems: NavbarItem[] = [
     href: "/",
     subItems: [
       { label: "Nástěnka školy", href: "/nastenka" },
-      { label: "Školní pokladna", href: "#", external: true },
+      {
+        label: "Školní pokladna",
+        href: "https://system.skolniprogram.cz",
+        external: true,
+      },
       { label: "Dokumenty", href: "/dokumenty" },
-      { label: "Měsíční plán", href: "#", external: true },
+      {
+        label: "Měsíční plán",
+        href: "https://zssvitkov.bakalari.cz/next/akce.aspx",
+        external: true,
+      },
       { label: "Poradenství", href: "/poradenstvi" },
       { label: "Projekty školy", href: "/projekty-skoly" },
       { label: "SRPDŠ", href: "/srpds" },
       { label: "Školská rada", href: "/skolska-rada" },
       { label: "Školní časopis", href: "/skolni-casopis" },
       { label: "Historie školy", href: "/historie-skoly" },
-      { label: "Fotogalerie", href: "#", external: true },
+      {
+        label: "Fotogalerie",
+        href: "https://eu.zonerama.com/zssvitkovfotogalerie/687661",
+        external: true,
+      },
     ],
   },
   {
@@ -49,7 +61,11 @@ export const navbarItems: NavbarItem[] = [
     href: "",
     subItems: [
       { label: "Třídy", href: "/nastenka?categoryCode=tridy" },
-      { label: "Rozvrhy", href: "#", external: true },
+      {
+        label: "Rozvrhy",
+        href: "https://zssvitkov.bakalari.cz/Timetable/Public",
+        external: true,
+      },
       { label: "Úspěchy žáků", href: "/nastenka?categoryCode=uspechy-zaku" },
       { label: "Žákovská rada", href: "/zakovska-rada" },
       { label: "Budoucí prvňáčci", href: "/budouci-prvnacci" },

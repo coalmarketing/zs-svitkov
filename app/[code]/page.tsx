@@ -166,7 +166,7 @@ export default async function UniversalPageRoute({
           </div>
         )}
 
-        {(page.links?.length ?? 0) > 0 && (
+        {/* {(page.links?.length ?? 0) > 0 && (
           <div className="col-span-8 col-start-3 mt-10">
             <h2 className="text-2xl font-bold mb-3 vertical-line">Odkazy</h2>
             <ul className="list-disc pl-6">
@@ -184,7 +184,7 @@ export default async function UniversalPageRoute({
               ))}
             </ul>
           </div>
-        )}
+        )} */}
       </Section>
     </main>
   );

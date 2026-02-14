@@ -144,7 +144,7 @@ export default function NewsFilters({
         />
       </div>
 
-      {selectedTop && (
+      {selectedTop?.subcategories?.length !== 0 && (
         <>
           <div className="w-1/3 relative">
             <label className="sr-only">Podkategorie</label>
