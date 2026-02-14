@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
 
 import Header from "@/components/header";
 import Section from "@/components/section";
@@ -11,6 +10,8 @@ import DirectorySelect from "@/components/directorySelect";
 import { getPage } from "@/lib/api/endpoints/pages";
 import { getNewsCategoriesGrouped } from "@/lib/api/endpoints/news";
 import { UNIVERSAL_PAGES, slugToApiCode } from "@/lib/webGlobals";
+
+import { ZssHttpError } from "@/lib/api/fetcher";
 
 type NewsLabel = { id: number; code: string; name: string };
 type NewsSubcategory = {
@@ -45,7 +46,6 @@ function findNewsCategoryCodeForPageSlug(
 }
 
 export async function generateStaticParams() {
-  // Your UNIVERSAL_PAGES should contain the route slugs you use in /[code]
   return UNIVERSAL_PAGES.map((p) => ({ code: p.code }));
 }
 
@@ -62,17 +62,26 @@ export default async function UniversalPageRoute({
   const apiCode = slugToApiCode(code);
   if (!apiCode) notFound();
 
-  const [page, newsCats] = await Promise.all([
-    getPage(apiCode),
-    getNewsCategoriesGrouped(),
-  ]);
+  let page: Awaited<ReturnType<typeof getPage>>;
+  let newsCats: Awaited<ReturnType<typeof getNewsCategoriesGrouped>>;
+
+  try {
+    [page, newsCats] = await Promise.all([
+      getPage(apiCode),
+      getNewsCategoriesGrouped(),
+    ]);
+  } catch (e) {
+    if (e instanceof ZssHttpError && e.status === 404) {
+      notFound();
+    }
+    throw e; // keep other errors as 500s
+  }
 
   const matchedNewsCategoryCode = findNewsCategoryCodeForPageSlug(
     newsCats as NewsCategory[],
     code,
   );
 
-  // Directory filtering: if ?dir=... is present, show ONLY that directory item's content as a single block
   const selectedDir = dir
     ? (page.directory?.find((d) => d.code === dir) ?? null)
     : null;
@@ -93,7 +102,6 @@ export default async function UniversalPageRoute({
       <PageHeading>{page.title}</PageHeading>
 
       <Section pt={"0"} pb={"8rem"}>
-        {/* Top buttons */}
         <div className="col-span-8 col-start-3 flex flex-wrap gap-16 justify-center">
           {(page.directory?.length ?? 0) > 0 && (
             <DirectorySelect
@@ -104,13 +112,16 @@ export default async function UniversalPageRoute({
               current={dir}
             />
           )}
+
           <Button href="/kontakty" className="w-1/3">
             Kontakty
           </Button>
 
           {matchedNewsCategoryCode && (
             <Button
-              href={`/nastenka?page=1&categoryCode=${encodeURIComponent(matchedNewsCategoryCode)}`}
+              href={`/nastenka?page=1&categoryCode=${encodeURIComponent(
+                matchedNewsCategoryCode,
+              )}`}
               className="w-1/3"
             >
               Nástěnka
@@ -118,16 +129,12 @@ export default async function UniversalPageRoute({
           )}
         </div>
 
-        {/* Directory dropdown: switches page content to ONLY the selected directory item */}
-
-        {/* Optional gallery */}
         {galleryImages.length > 0 && (
           <div className="col-span-8 col-start-3 mb-8">
             <ImageGallery images={galleryImages} />
           </div>
         )}
 
-        {/* Blocks (full or filtered via directory selection) */}
         <div className="col-span-8 col-start-3 flex flex-col gap-4 gap-y-16">
           {blocksToRender.map((b, idx) => (
             <div key={`${b.heading}-${idx}`}>
@@ -142,7 +149,6 @@ export default async function UniversalPageRoute({
           ))}
         </div>
 
-        {/* Documents */}
         {(page.documents?.length ?? 0) > 0 && (
           <div className="col-span-8 col-start-3 mt-10 flex flex-col gap-4">
             <h2 className="text-2xl font-bold mb-3 vertical-line">
@@ -156,7 +162,6 @@ export default async function UniversalPageRoute({
           </div>
         )}
 
-        {/* Links */}
         {(page.links?.length ?? 0) > 0 && (
           <div className="col-span-8 col-start-3 mt-10">
             <h2 className="text-2xl font-bold mb-3 vertical-line">Odkazy</h2>

@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Button } from "./buttons";
+
 import Image from "next/image";
 
 export type Label = { id: number; code: string; name: string };
@@ -90,7 +90,9 @@ export default function NewsFilters({
 
   function push(next: { categoryCode?: string; labelCode?: string }) {
     const nextSp = new URLSearchParams(sp.toString());
+
     nextSp.set("page", "1");
+    nextSp.delete("open"); // clear opened article on any change
 
     if (next.categoryCode !== undefined)
       setOrDelete(nextSp, "categoryCode", next.categoryCode);

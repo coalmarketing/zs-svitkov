@@ -8,6 +8,20 @@ if (!TOKEN) throw new Error("Missing ZSS_API_TOKEN");
 
 const TOKEN_VALUE = TOKEN as string;
 
+export class ZssHttpError extends Error {
+  status: number;
+  pathname: string;
+  body?: string;
+
+  constructor(status: number, pathname: string, body?: string) {
+    super(`API error ${status} for ${pathname}${body ? `: ${body}` : ""}`);
+    this.name = "ZssHttpError";
+    this.status = status;
+    this.pathname = pathname;
+    this.body = body;
+  }
+}
+
 type FetchOpts = {
   revalidate?: number;
   tags?: string[];
@@ -25,14 +39,15 @@ export async function zssFetch<T>(
       "X-AUTH-TOKEN": TOKEN_VALUE,
       Accept: "application/json",
     },
+    // If you want Next caching, prefer setting cache via opts (or next: { revalidate/tags })
     cache: "no-store",
     ...opts,
   });
 
   if (!res.ok) {
     const text = await res.text().catch(() => "");
-    throw new Error(`API error ${res.status} for ${url.pathname}: ${text}`);
+    throw new ZssHttpError(res.status, url.pathname, text || undefined);
   }
 
-  return res.json() as Promise<T>;
+  return (await res.json()) as T;
 }

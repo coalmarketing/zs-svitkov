@@ -11,11 +11,11 @@ import {
   getNewsDetail,
   type NewsItem,
 } from "@/lib/api/endpoints/news";
-import { sanitise } from "@/lib/api/html/sanitize";
 
 import GalleryClient from "./galleryClient";
+import Pagination from "@/components/pagination";
 
-function buildOpenHref(params: {
+export function buildOpenHref(params: {
   page?: string;
   categoryCode?: string;
   labelCode?: string;
@@ -130,6 +130,8 @@ const NoticeboardPage = async ({
     ? news.items.filter((i) => i.slug !== opened.slug)
     : news.items;
 
+  const totalPages = news.pagination.totalPages;
+
   return (
     <main className="min-h-screen">
       <Header imageUrl={"/img/headers/home.webp"} />
@@ -167,11 +169,19 @@ const NoticeboardPage = async ({
                 open: item.slug,
               })}
             >
-              <div
-                dangerouslySetInnerHTML={{ __html: sanitise(item.content) }}
-              />
+              <div dangerouslySetInnerHTML={{ __html: item.content }} />
             </ArticleBlock>
           ))}
+        </div>
+
+        {/* Pagination */}
+        <div className="col-span-8 col-start-3">
+          <Pagination
+            currentPage={page}
+            totalPages={totalPages}
+            categoryCode={params.categoryCode}
+            labelCode={params.labelCode}
+          />
         </div>
       </Section>
     </main>
