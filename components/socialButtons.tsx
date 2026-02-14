@@ -10,7 +10,7 @@ const SocialButtons = ({ divideBy }: { divideBy: number }) => {
         gap: "1rem",
       }}
     >
-      <div className="col-span-1 w-full flex justify-between gap-4 mt-4 text-brand">
+      <div className="col-span-1 w-full flex justify-start lg:justify-between gap-4 mt-4 text-brand">
         <a
           href={INSTAGRAM_URL}
           target="_blank"

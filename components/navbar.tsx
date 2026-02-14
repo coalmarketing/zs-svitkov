@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
-import { BiLinkExternal } from "react-icons/bi";
 
 type NavbarSubItem = {
   label: string;
@@ -43,7 +42,7 @@ const DesktopNav: React.FC<NavbarProps> = ({ items }) => {
   );
 
   return (
-    <nav className="lg:col-span-10 lg:col-start-2 navbar h-20 hidden lg:flex items-center space-grotesk pl-12 pr-24">
+    <nav className="md:col-span-8 md:col-start-1 lg:col-span-10 lg:col-start-2 navbar h-20 hidden md:flex items-center space-grotesk">
       <ul className="w-full flex flex-row flex-nowrap justify-between">
         {items.map((item, idx) => (
           <li
@@ -130,3 +129,30 @@ const DesktopNav: React.FC<NavbarProps> = ({ items }) => {
 };
 
 export default DesktopNav;
+
+export const MobileNav: React.FC<NavbarProps> = ({ items }) => {
+  const pathname = usePathname();
+  const [hovered, setHovered] = useState<number | null>(null);
+
+  const inside = (item: NavbarItem, current: boolean, hover: boolean) => (
+    <span
+      className="relative"
+      style={{
+        textDecoration: current ? "underline" : "none",
+        textUnderlineOffset: "6px",
+        textDecorationThickness: "2px",
+      }}
+    >
+      {item.label}
+      <span className="absolute -right-5 top-1/2 -translate-y-1/2">
+        {item.subItems ? (!hover ? " +" : " -") : ""}
+      </span>
+    </span>
+  );
+
+  return (
+    <nav className="col-span-12 mobile-navbar h-20 flex md:hidden items-center space-grotesk pl-12 pr-24">
+      <ul className="w-full flex flex-row flex-nowrap justify-between"></ul>
+    </nav>
+  );
+};

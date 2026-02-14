@@ -21,28 +21,28 @@ const Footer = () => {
         <img
           src="/img/menu-bg.webp"
           alt=""
-          className="w-full h-full object-fill"
+          className="w-full h-full object-fill scale-x-150 lg:scale-x-105"
         />
       </div>
       <div className="h-200 lg:h-100  relative flex items-center">
         <Container>
           <Grid12>
-            <div className="col-span-6 col-start-3">
+            <div className="col-span-4 lg:col-span-6 lg:col-start-3">
               <h4 className="font-semibold text-xl mb-4">Důležité odkazy</h4>
               <FooterImportantLinks />
             </div>
-            <div className="col-span-3 col-start-10">
+            <div className="col-span-4 order-3 lg:order-2 lg:col-span-3 lg:col-start-10">
               <SocialButtons divideBy={3} />
             </div>
 
-            <div className="col-span-6 col-start-3">
+            <div className="col-span-4 order-2 lg:order-3 lg:col-span-6 lg:col-start-3">
               <h4 className="font-semibold text-xl mb-4">Partneři školy</h4>
               <FooterSchoolPartners />
             </div>
 
-            <div className="col-span-3 col-start-10">
+            <div className="order-4 col-span-4 lg:col-span-3 lg:col-start-10">
               {/* VODOZNAK */}
-              <div className="space-grotesk font-bold leading-none opacity-25 text-[70px] pointer-events-none select-none">
+              <div className="space-grotesk font-bold leading-tight lg:leading-none opacity-25 text-5xl lg:text-[70px] pointer-events-none select-none">
                 ZŠ Svítkov
                 <br />
                 1924 &ndash; …

@@ -18,43 +18,46 @@ export default async function Home() {
     })) ?? [];
 
   return (
-    <main className="min-h-screen pb-20">
-      <Header imageUrl={"/img/headers/home.webp"} homePage={true} />
+    <main className="min-h-screen pb-20 w-screen overflow-x-hidden">
+      <Header imageUrl={"/img/headers/DSC_8967.JPG"} homePage={true} />
       <Section pt="1rem" pb="0">
-        <div className="col-span-8 col-start-3">
-          <h1 className="text-4xl xl:text-[125px] font-extrabold mb-6 xl:mb-6">
+        <div className="col-span-4 lg:col-span-8 lg:col-start-3">
+          <h1 className="text-6xl lg:text-[125px] font-extrabold mb-6 lg:mb-6">
             ZŠ Svítkov
           </h1>
-          <p className="text-xl xl:text-[40px] leading-none font-bold space-grotesk">
+          <p className="text-3xl lg:text-[40px] leading-none font-bold space-grotesk">
             škola, která otevírá dveře
-            <br />
+            <br className="hidden lg:inline" />
             novým možnostem
           </p>
         </div>
-        <div className="col-span-2 col-start-9">
-          <Button href="/nastenka" className="w-full text-[26px]">
+        <div className="col-span-2 col-start-3 lg:col-start-9">
+          <Button
+            href="/nastenka"
+            className="w-full text-lg md:text-xl lg:text-2xl"
+          >
             Nástěnka
           </Button>
         </div>
       </Section>
       <Section className="" pt="0" pb="0">
-        <div className="col-span-8 col-start-3">
+        <div className="col-span-4 col-start-1 lg:col-span-8 lg:col-start-3">
           <Divider height={100} />
         </div>
       </Section>
 
       <Section className="space-grotesk" pt="0" pb="0">
-        <div className="col-span-8 col-start-3 p-0">
-          <h2 className="text-xl xl:text-[40px] leading-none font-bold space-grotesk">
+        <div className="col-span-4 lg:col-span-8 lg:col-start-3 p-0">
+          <h2 className="text-3xl lg:text-[40px] leading-none font-bold space-grotesk">
             Vzděláváme žáky <br />
             od roku 1924
           </h2>
         </div>
 
-        <div className="col-span-7 mt-10 mb-20">
+        <div className="col-span-4 lg:col-span-7 mt-10 mb-20">
           <ImageGallery images={images} showThumbnails={false} />
         </div>
-        <div className="col-span-2 col-start-9">
+        <div className="col-span-4 lg:col-span-2 lg:col-start-9 mb-20 lg:mb-0">
           <h3 className="text-4xl font-bold space-grotesk">
             Naše škola
             <br />
@@ -65,7 +68,7 @@ export default async function Home() {
       </Section>
 
       <Section className="space-grotesk" pt="0" pb="0">
-        <div className="col-span-6 col-start-3">
+        <div className="col-span-4 lg:col-span-6 lg:col-start-3">
           <Text>
             <strong>
               Základní škola Pardubice &ndash; Svítkov je moderní a přátelská
@@ -102,7 +105,7 @@ export default async function Home() {
             rodičů, přátel a&nbsp;dětí školy.
           </Text>
         </div>
-        <div className="col-span-2 col-start-3">
+        <div className="col-span-3 md:col-span-3 md:col-start-2 lg:col-span-2 lg:col-start-3">
           <Divider height={120} />
           <div className="w-full">
             <div className="w-full h-20 relative">

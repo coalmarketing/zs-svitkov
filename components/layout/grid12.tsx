@@ -10,7 +10,7 @@ export function Container({
 }
 
 const globalGridSettings =
-  "px-32 grid grid-cols-12 gap-4 sm:gap-6 lg:gap-4 items-center";
+  "px-10 xl:px-32 grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 xl:grid-cols-12 gap-4 sm:gap-6 lg:gap-4 items-center max-w-screen";
 
 export function Grid12({
   gridSettings = globalGridSettings,
@@ -26,7 +26,7 @@ export function DisplayGrid12({ gridSettings = globalGridSettings }) {
   return (
     <div
       className={clsx(
-        "fixed top-0 left-0 w-full h-screen z-10 pointer-events-none select-none",
+        "fixed top-0 left-0 w-full h-screen z-10 pointer-events-none select-none grid-rows-1",
         gridSettings,
       )}
     >

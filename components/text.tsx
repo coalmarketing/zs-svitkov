@@ -4,7 +4,7 @@ interface TextProps {
 
 export const Text: React.FC<TextProps> = ({ children }) => {
   return (
-    <p className="text-xs md:text-[18px] mb-8 leading-relaxed text-justify max-w-3xl">
+    <p className="text-base md:text-[18px] mb-8 leading-5 lg:leading-relaxed text-left lg:text-justify max-w-3xl">
       {children}
     </p>
   );

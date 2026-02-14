@@ -7,7 +7,7 @@ export default async function FooterImportantLinks() {
   if (!links?.length) return null;
 
   return (
-    <div className="grid grid-cols-6 gap-4">
+    <div className="flex flex-wrap flex-row lg:grid lg:grid-cols-6 gap-4">
       {links.map(
         (l) =>
           l.logoUrl && (

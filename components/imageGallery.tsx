@@ -81,7 +81,7 @@ export default function ImageGallery({
       {/* Carousel */}
       <div
         className={[
-          "relative overflow-hidden rounded-[2.5rem] bg-black/20",
+          "relative overflow-hidden rounded-xl lg:rounded-[2.5rem] bg-black/20",
           ,
         ].join(" ")}
       >

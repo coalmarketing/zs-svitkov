@@ -25,13 +25,7 @@ export default function RootLayout({
       <body
         className={`antialiased ${spaceGrotesk.variable} max-w-screen overflow-x-hidden scroll-smooth space-grotesk`}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        {/* <img
-          src="./img/test.png"
-          className="fixed top-0 left-0 w-full h-full -z-20 pointer-events-none select-none"
-          alt=""
-        /> */}
-        {/* <DisplayGrid12 /> */}
+        <DisplayGrid12 />
         {children}
         <Footer />
       </body>
