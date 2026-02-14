@@ -7,7 +7,9 @@ const poppins = Poppins({
 });
 
 import SocialButtons from "./socialButtons";
-import FooterImportantLinks from "./footerImportantLinks";
+import FooterImportantLinks, {
+  FooterSchoolPartners,
+} from "./footerImportantLinks";
 import { Container, Grid12 } from "./layout/grid12";
 import Image from "next/image";
 
@@ -35,7 +37,7 @@ const Footer = () => {
 
             <div className="col-span-6 col-start-3">
               <h4 className="font-semibold text-xl mb-4">Partneři školy</h4>
-              <div className="grid grid-cols-6 gap-4"></div>{" "}
+              <FooterSchoolPartners />
             </div>
 
             <div className="col-span-3 col-start-10">
