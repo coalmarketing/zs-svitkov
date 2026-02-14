@@ -18,6 +18,10 @@
   --color-muted: var(--color-gray);
 }
 
+.prose {
+  max-width: unset !important;
+}
+
 body {
   background-color: var(--color-bg);
   background: url("../public/img/bg.webp") no-repeat center center fixed;

@@ -98,7 +98,11 @@ export default async function UniversalPageRoute({
 
   return (
     <main className="min-h-screen">
-      <Header imageUrl={"/img/headers/home.webp"} />
+      <Header
+        imageUrl={
+          page.headerImage ? page.headerImage : "/img/headers/home.webp"
+        }
+      />
       <PageHeading>{page.title}</PageHeading>
 
       <Section pt={"0"} pb={"8rem"}>
@@ -130,19 +134,19 @@ export default async function UniversalPageRoute({
         </div>
 
         {galleryImages.length > 0 && (
-          <div className="col-span-8 col-start-3 mb-8">
+          <div className="col-span-8 col-start-3 mt-8">
             <ImageGallery images={galleryImages} />
           </div>
         )}
 
-        <div className="col-span-8 col-start-3 flex flex-col gap-4 gap-y-16">
+        <div className="col-span-8 col-start-3 flex flex-col gap-4 gap-y-16 mt-12">
           {blocksToRender.map((b, idx) => (
             <div key={`${b.heading}-${idx}`}>
               <h2 className="text-2xl font-bold mb-3 vertical-line">
                 {b.heading}
               </h2>
               <div
-                className="prose prose-sm prose-a:text-brand prose-a:underline"
+                className="prose prose-sm prose-a:text-brand prose-a:underline w-full"
                 dangerouslySetInnerHTML={{ __html: b.content }}
               />
             </div>

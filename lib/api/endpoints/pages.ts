@@ -29,6 +29,7 @@ export type PageLink = {
 export type UniversalPage = {
   code: string;
   title: string;
+  headerImage: string;
   blocks: PageBlock[];
   images: PageImage[];
   directory: PageDirectoryItem[];
