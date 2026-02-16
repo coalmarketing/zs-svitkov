@@ -72,7 +72,7 @@ h6,
   height: 200%;
   z-index: -1;
 
-  transform: translateX(50%) translateY(-50%) scale(2, 2);
+  transform: translateX(150%) translateY(-50%) scale(4);
 
   background: url("../public/img/nav-bg.png") center / contain no-repeat;
   background-size: contain;
