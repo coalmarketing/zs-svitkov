@@ -3,6 +3,7 @@ import Section from "@/components/section";
 import { PageHeading } from "@/components/text";
 import { DownloadButton } from "@/components/buttons";
 import { getDocumentsGrouped } from "@/lib/api/endpoints/documents";
+import AccordionSection from "@/components/AccordionSection";
 
 export default async function DocumentsPage() {
   const groups = await getDocumentsGrouped();
@@ -12,38 +13,34 @@ export default async function DocumentsPage() {
   );
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen pb-20 max-w-screen overflow-x-hidden">
       <Header imageUrl={"/img/headers/home.webp"} />
       <PageHeading>Dokumenty ke stažení</PageHeading>
 
       <Section pt="20px">
-        <div className="col-span-8 col-start-3 gap-x-4 gap-y-16 grid grid-cols-8">
-          {sorted.map((group, index) => (
-            <section
-              key={group.category.id}
-              className={
-                index % 2 === 0
-                  ? "col-start-1 col-span-3"
-                  : "col-start-6 col-span-3"
-              }
-            >
-              <h2 className="text-2xl font-bold mb-4 vertical-line p-0">
-                {group.category.name}
-              </h2>
-
-              <div className="flex flex-col gap-3">
-                {group.documents.map((doc) => (
-                  <DownloadButton
-                    key={doc.id}
-                    fileUrl={doc.url}
-                    target="_blank"
-                  >
-                    {doc.name}
-                  </DownloadButton>
-                ))}
-              </div>
-            </section>
-          ))}
+        {/* Mobile: full width (4-col grid). LG+: centered (8 cols starting at 3) */}
+        <div className="col-span-4 lg:col-span-8 lg:col-start-3">
+          {/* Mobile: stacked. LG+: 2-column grid like your alternating layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-10 lg:gap-x-12">
+            {sorted.map((group) => (
+              <AccordionSection
+                key={group.category.id}
+                label={group.category.name}
+              >
+                <div className="flex flex-col gap-3 pl-4 md:pl-0 mb-5">
+                  {group.documents.map((doc) => (
+                    <DownloadButton
+                      key={doc.id}
+                      fileUrl={doc.url}
+                      target="_blank"
+                    >
+                      {doc.name}
+                    </DownloadButton>
+                  ))}
+                </div>
+              </AccordionSection>
+            ))}
+          </div>
         </div>
       </Section>
     </main>

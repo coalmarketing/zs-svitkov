@@ -103,7 +103,7 @@ export default function ImageGallery({
                 alt={current.alt}
                 className={[
                   "absolute inset-0 h-full w-full object-cover",
-                  "transition-transform duration-300",
+                  "transition-transform duration-300 m-0! p-0!",
                   "group-hover:scale-[1.01]",
                 ].join(" ")}
                 draggable={false}

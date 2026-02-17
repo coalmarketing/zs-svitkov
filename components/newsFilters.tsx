@@ -84,7 +84,7 @@ export default function NewsFilters({
           name: s.name,
         })),
       )
-    : [];
+    : [{ code: "", name: "Všechny podkategorie" }];
 
   const labelOptions = buildLabelOptions(selectedTop, selectedSub);
 
@@ -118,8 +118,8 @@ export default function NewsFilters({
   }
 
   return (
-    <div className="mb-6 col-span-8 col-start-3 flex flex-col md:flex-row md:items-center justify-between gap-16">
-      <div className="w-1/3 relative">
+    <div className="mb-6 col-span-4 lg:col-span-8 lg:col-start-3 flex flex-col md:flex-row md:items-center justify-between gap-4 lg:gap-16">
+      <div className="w-full lg:w-1/3 relative">
         <label className="sr-only">Kategorie</label>
         <select
           className="bg-brand hover:bg-brand-dark transition rounded-lg
@@ -144,9 +144,10 @@ export default function NewsFilters({
         />
       </div>
 
-      {selectedTop?.subcategories?.length !== 0 && (
+      {(selectedTop?.subcategories?.length !== 0 ||
+        selectedTop?.subcategories !== undefined) && (
         <>
-          <div className="w-1/3 relative">
+          <div className="w-full lg:w-1/3 relative">
             <label className="sr-only">Podkategorie</label>
             <select
               className="bg-brand hover:bg-brand-dark transition rounded-lg

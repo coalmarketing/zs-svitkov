@@ -29,10 +29,10 @@ const ArticleBlock: React.FC<ArticleBlockProps> = ({
   expanded = false,
 }) => {
   return (
-    <div className="w-full space-grotesk pr-20">
-      <div className="vertical-line">
+    <div className="w-full space-grotesk lg:pr-20">
+      <div className="vertical-line ml-4 md:ml-0">
         <div className="flex flex-row flex-nowrap gap-5 items-center mb-2">
-          <p className="text-brand text-lg font-semibold space-grotesk">
+          <p className="text-brand text-sm lg:text-lg font-semibold space-grotesk">
             {new Date(date).toLocaleDateString("cs-CZ", {
               year: "numeric",
               month: "long",
@@ -45,7 +45,7 @@ const ArticleBlock: React.FC<ArticleBlockProps> = ({
             ))}
           </div>
         </div>
-        <h3 className="space-grotesk font-bold text-3xl">{title}</h3>
+        <h3 className="space-grotesk font-bold text-xl lg:text-3xl">{title}</h3>
         <div className="flex items-center gap-4 mt-2 mb-10">
           {hasImage && (
             <div>

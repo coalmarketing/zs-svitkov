@@ -31,7 +31,7 @@ export default function GalleryClient({ images }: { images: GalleryImage[] }) {
   return (
     <>
       {images.length > 0 && (
-        <div className="grid grid-cols-4 gap-4 w-4/5 mt-6 mb-2">
+        <div className="grid grid-cols-4 gap-4 w-full lg:w-4/5 mt-6 mb-2">
           {images.map((img, idx) => (
             <div
               key={idx}

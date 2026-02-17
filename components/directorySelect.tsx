@@ -24,7 +24,7 @@ export default function DirectorySelect({
   }
 
   return (
-    <div className="mb-6 w-1/3 relative">
+    <div className="col-span-4 mb-6 lg:w-1/3 relative">
       <label className="sr-only">Rozcestník</label>
       <select
         className="bg-brand hover:bg-brand-dark transition rounded-lg

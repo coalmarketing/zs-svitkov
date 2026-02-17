@@ -1,3 +1,4 @@
+import ContactsAccordionSection from "@/components/contactAccordeon";
 import Header from "@/components/header";
 import Section from "@/components/section";
 import { Heading, PageHeading } from "@/components/text";
@@ -10,29 +11,28 @@ import {
 } from "@/lib/api/endpoints/contacts";
 
 function ContactCard({ person }: { person: ContactPerson }) {
-  return (
-    <div className="w-full text-sm ">
-      {person.position ? (
-        <>
-          <div className="font-bold text-brand">{person.position}</div>
-        </>
-      ) : (
-        <div className="font-bold text-brand">{person.name}</div>
-      )}
+  const title = person.position?.trim() ? person.position : person.name;
 
-      <div className="mt-1 grid grid-cols-8 gap-4">
-        {person.name?.trim() && <p className="col-span-2">{person.name}</p>}
+  return (
+    <div className="w-full text-sm">
+      <div className="font-bold text-brand">{title}</div>
+
+      {/* Mobile: stacked. LG+: 8-col grid like before */}
+      <div className="mt-1 flex flex-col gap-1 lg:grid lg:grid-cols-8 lg:gap-4">
+        {person.name?.trim() && <p className="lg:col-span-2">{person.name}</p>}
+
         {person.email && (
           <a
-            className="text-black underline col-span-2"
+            className="text-black underline hover:text-brand transition lg:col-span-2"
             href={`mailto:${person.email}`}
           >
             {person.email}
           </a>
         )}
+
         {person.phone && (
           <a
-            className="text-black underline col-span-2"
+            className="text-black underline hover:text-brand transition lg:col-span-2"
             href={`tel:${person.phone.replace(/\s+/g, "")}`}
           >
             {person.phone}
@@ -118,9 +118,10 @@ function GenericItems({
     <div className="text-sm">
       <div className="font-bold text-brand">{heading}</div>
 
-      <div className="grid mt-1 grid-cols-8 gap-4">
+      {/* Mobile: stacked. LG+: grid */}
+      <div className="mt-1 flex flex-col gap-1 lg:grid lg:grid-cols-8 lg:gap-4">
         {items.map((s) => (
-          <p key={s} className="col-span-2">
+          <p key={s} className="lg:col-span-2">
             {s}
           </p>
         ))}
@@ -129,45 +130,37 @@ function GenericItems({
   );
 }
 
-function ContactsGroupSection({ group }: { group: ContactsGroup }) {
+function ContactsGroupBody({ group }: { group: ContactsGroup }) {
   const { category } = group;
 
-  return (
-    <section>
-      <Heading>{category.name}</Heading>
+  if (category.type === "contacts") {
+    if (!group.contacts || group.contacts.length === 0) {
+      return <div className="text-sm">Žádné kontakty k zobrazení.</div>;
+    }
+    return (
+      <div className="flex flex-col gap-6">
+        {group.contacts.map((p) => (
+          <ContactCard key={p.id} person={p} />
+        ))}
+      </div>
+    );
+  }
 
-      {category.type === "contacts" && (
-        <div className="flex flex-col gap-6 ">
-          {(group.contacts ?? []).map((p) => (
-            <ContactCard key={p.id} person={p} />
-          ))}
-        </div>
-      )}
+  if (category.type === "info") {
+    if (!group.info) {
+      return <div className="text-sm">Informace nejsou k dispozici.</div>;
+    }
+    return <SchoolInfoBlock info={group.info} />;
+  }
 
-      {category.type === "info" && group.info && (
-        <SchoolInfoBlock info={group.info} />
-      )}
+  if (category.type === "generic") {
+    if (!group.items || group.items.length === 0) {
+      return <div className="text-sm">Žádné položky k zobrazení.</div>;
+    }
+    return <GenericItems items={group.items} heading={group.category.name} />;
+  }
 
-      {category.type === "generic" && (group.items?.length ?? 0) > 0 && (
-        <GenericItems items={group.items!} heading={group.category.name} />
-      )}
-
-      {/* Defensive fallbacks */}
-      {category.type === "contacts" &&
-        (!group.contacts || group.contacts.length === 0) && (
-          <div className="text-sm">Žádné kontakty k zobrazení.</div>
-        )}
-      {category.type === "info" && !group.info && (
-        <div className="text-sm">Informace nejsou k dispozici.</div>
-      )}
-      {category.type === "generic" &&
-        (!group.items || group.items.length === 0) && (
-          <div className="rounded-md border p-4">
-            Žádné položky k zobrazení.
-          </div>
-        )}
-    </section>
-  );
+  return null;
 }
 
 export default async function ContactsPage() {
@@ -179,28 +172,34 @@ export default async function ContactsPage() {
   );
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen pb-20 max-w-screen overflow-x-hidden">
       <Header imageUrl={"/img/headers/home.webp"} />
       <PageHeading>Kontakty</PageHeading>
 
       <Section pt={"2em"} pb={"10em"}>
-        <div className="col-span-8 col-start-3 flex flex-col gap-10">
+        <div className="col-span-4 lg:col-span-8 lg:col-start-3 flex flex-col gap-10">
           {sorted.map((g) => (
-            <ContactsGroupSection key={g.category.id} group={g} />
+            <ContactsAccordionSection
+              key={g.category.name}
+              group={g}
+              open={g.category.name === "Důležité kontakty"}
+            >
+              <ContactsGroupBody group={g} />
+            </ContactsAccordionSection>
           ))}
         </div>
+
         {genericItems.length > 0 && (
           <>
-            <div className="col-span-8 col-start-3">
+            <div className="mt-4 ml-4 md:ml-0 col-span-4 lg:col-span-8 lg:col-start-3">
               <Heading>Další kontakty</Heading>
             </div>
-            <div className="col-span-8 col-start-3 flex flex-col gap-6 mb-12">
+
+            <div className="col-span-4 lg:col-span-8 lg:col-start-3 flex flex-col gap-6 mb-12">
               {genericItems.map((g) => (
-                <GenericItems
-                  key={g.category.id}
-                  items={g.items ?? []}
-                  heading={g.category.name}
-                />
+                <ContactsAccordionSection key={g.category.id} group={g}>
+                  <ContactsGroupBody group={g} />
+                </ContactsAccordionSection>
               ))}
             </div>
           </>

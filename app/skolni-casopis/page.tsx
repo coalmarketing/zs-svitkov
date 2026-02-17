@@ -19,7 +19,9 @@ const SchoolMagazineBlock = ({
   className?: string;
 }) => {
   return (
-    <div className={`vertical-line py-1 space-grotesk ${className}`}>
+    <div
+      className={`vertical-line py-1 space-grotesk ${className} ml-4 md:ml-0`}
+    >
       <p className="font-bold text-brand text-base mb-2">Školní časopis</p>
       <h3 className="font-bold text-3xl mb-2">{name}</h3>
       <a
@@ -56,17 +58,17 @@ export default async function SchoolMagazinePage({
   ];
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen pb-20 max-w-screen overflow-x-hidden">
       <Header imageUrl={"/img/headers/home.webp"} />
       <PageHeading>Školní časopis</PageHeading>
 
       <Section pt="20px">
-        <div className="col-span-3 col-start-3">
+        <div className="col-span-12 lg:col-span-3 lg:col-start-3">
           {years.length > 0 && (
             <SchoolYearSelect years={years} current={activeYear} />
           )}
         </div>
-        <div className="col-span-8 col-start-3">
+        <div className="col-span-12 lg:col-span-8 lg:col-start-3">
           {issues.length === 0 ? (
             <div className="rounded-md border p-4">
               Pro tento školní rok zatím nejsou dostupná čísla.

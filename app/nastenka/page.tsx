@@ -14,6 +14,7 @@ import {
 
 import GalleryClient from "./galleryClient";
 import Pagination from "@/components/pagination";
+import ImageGallery from "@/components/imageGallery";
 
 export function buildOpenHref(params: {
   page?: string;
@@ -84,7 +85,20 @@ const PinnedArticle = ({
           )}
 
           {/* Images */}
-          {images.length > 0 && <GalleryClient images={images} />}
+          {images.length > 0 && (
+            <>
+              <div className="hidden lg:block">
+                <GalleryClient images={images} />
+              </div>
+              <div className="lg:hidden my-4">
+                <ImageGallery
+                  images={images}
+                  showThumbnails={false}
+                  aspectClassName="aspect-square"
+                />
+              </div>
+            </>
+          )}
         </ArticleBlock>
 
         <div className="flex items-center justify-between pt-4 pb-10">
@@ -133,7 +147,7 @@ const NoticeboardPage = async ({
   const totalPages = news.pagination.totalPages;
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen pb-20 max-w-screen overflow-x-hidden">
       <Header imageUrl={"/img/headers/home.webp"} />
       <PageHeading>Nástěnka</PageHeading>
       <Section pt="0" pb="0">
@@ -147,13 +161,13 @@ const NoticeboardPage = async ({
       <Section>
         {/* Pinned opened article */}
         {opened && (
-          <div className="col-span-10 col-start-3">
+          <div className="col-span-12 lg:col-span-10 lg:col-start-3">
             <PinnedArticle item={opened} baseParams={params} />
           </div>
         )}
 
         {/* List */}
-        <div className="col-span-10 col-start-3 grid grid-cols-2 gap-4 gap-y-16">
+        <div className="col-span-12 lg:col-span-10 lg:col-start-3 grid grid-cols-1 lg:grid-cols-2 gap-4 gap-y-16">
           {items.map((item) => (
             <ArticleBlock
               key={item.id}

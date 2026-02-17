@@ -18,7 +18,7 @@ export default async function Home() {
     })) ?? [];
 
   return (
-    <main className="min-h-screen pb-20 w-screen overflow-x-hidden">
+    <main className="min-h-screen pb-20 max-w-screen overflow-x-hidden">
       <Header imageUrl={"/img/headers/DSC_8967.JPG"} homePage={true} />
       <Section pt="1rem" pb="0">
         <div className="col-span-4 lg:col-span-8 lg:col-start-3">

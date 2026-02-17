@@ -24,19 +24,19 @@ const Footer = () => {
           className="w-full h-full object-fill scale-x-150 lg:scale-x-105"
         />
       </div>
-      <div className="h-200 lg:h-100  relative flex items-center">
+      <div className="h-200 lg:h-100 relative flex items-center">
         <Container>
           <Grid12>
-            <div className="col-span-4 lg:col-span-6 lg:col-start-3">
-              <h4 className="font-semibold text-xl mb-4">Důležité odkazy</h4>
+            <div className="col-span-4 lg:col-span-6 lg:col-start-3 mb-10 lg:mb-0">
+              <h4 className="font-bold text-xl mb-4">Důležité odkazy</h4>
               <FooterImportantLinks />
             </div>
-            <div className="col-span-4 order-3 lg:order-2 lg:col-span-3 lg:col-start-10">
+            <div className="col-span-4 order-3 lg:order-2 lg:col-span-3 lg:col-start-10 mb-4 lg:mb-0">
               <SocialButtons divideBy={3} />
             </div>
 
-            <div className="col-span-4 order-2 lg:order-3 lg:col-span-6 lg:col-start-3">
-              <h4 className="font-semibold text-xl mb-4">Partneři školy</h4>
+            <div className="col-span-4 order-2 lg:order-3 lg:col-span-6 lg:col-start-3 mb-10 lg:mb-0">
+              <h4 className="font-bold text-xl mb-4">Partneři školy</h4>
               <FooterSchoolPartners />
             </div>
 
