@@ -25,7 +25,7 @@ export default function RootLayout({
       <body
         className={`antialiased ${spaceGrotesk.variable} max-w-screen w-screen overflow-x-hidden scroll-smooth space-grotesk`}
       >
-        <DisplayGrid12 />
+        {/* <DisplayGrid12 /> */}
         {children}
         <Footer />
       </body>
