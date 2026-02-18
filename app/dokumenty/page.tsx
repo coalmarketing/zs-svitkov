@@ -3,7 +3,7 @@ import Section from "@/components/layout/section";
 import { PageHeading } from "@/components/ui/text";
 import { DownloadButton } from "@/components/ui/buttons";
 import { getDocumentsGrouped } from "@/lib/api/endpoints/documents";
-import AccordionSection from "@/components/accordionSection";
+import AccordionSection from "@/components/ui/accordionSection";
 
 export default async function DocumentsPage() {
   const groups = await getDocumentsGrouped();
@@ -22,10 +22,11 @@ export default async function DocumentsPage() {
         <div className="col-span-4 lg:col-span-8 lg:col-start-3">
           {/* Mobile: stacked. LG+: 2-column grid like your alternating layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-10 lg:gap-x-12">
-            {sorted.map((group) => (
+            {sorted.map((group, idx) => (
               <AccordionSection
                 key={group.category.id}
                 label={group.category.name}
+                open={idx === 0}
               >
                 <div className="flex flex-col gap-3 pl-4 md:pl-0 mb-5">
                   {group.documents.map((doc) => (
