@@ -1,9 +1,9 @@
-import Header from "@/components/header";
-import Section from "@/components/section";
-import { PageHeading } from "@/components/text";
-import { DownloadButton } from "@/components/buttons";
+import Header from "@/components/layout/header";
+import Section from "@/components/layout/section";
+import { PageHeading } from "@/components/ui/text";
+import { DownloadButton } from "@/components/ui/buttons";
 import { getDocumentsGrouped } from "@/lib/api/endpoints/documents";
-import AccordionSection from "@/components/AccordionSection";
+import AccordionSection from "@/components/accordionSection";
 
 export default async function DocumentsPage() {
   const groups = await getDocumentsGrouped();
@@ -14,7 +14,7 @@ export default async function DocumentsPage() {
 
   return (
     <main className="min-h-screen pb-20 max-w-screen overflow-x-hidden">
-      <Header imageUrl={"/img/headers/home.webp"} />
+      <Header imageUrl={"/img/headers/dokumenty.webp"} />
       <PageHeading>Dokumenty ke stažení</PageHeading>
 
       <Section pt="20px">

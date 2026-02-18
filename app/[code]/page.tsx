@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation";
 
-import Header from "@/components/header";
-import Section from "@/components/section";
-import { PageHeading } from "@/components/text";
-import { Button, DownloadButton } from "@/components/buttons";
+import Header from "@/components/layout/header";
+import Section from "@/components/layout/section";
+import { PageHeading } from "@/components/ui/text";
+import { Button, DownloadButton } from "@/components/ui/buttons";
 import ImageGallery from "@/components/imageGallery";
-import DirectorySelect from "@/components/directorySelect";
+import DirectorySelect from "@/app/[code]/directorySelect";
 
 import { getPage } from "@/lib/api/endpoints/pages";
 import { getNewsCategoriesGrouped } from "@/lib/api/endpoints/news";

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import ImageModal from "../../components/imageModal";
+import Image from "next/image";
 
 export type GalleryImage = { url: string; alt: string };
 
@@ -39,12 +40,15 @@ export default function GalleryClient({ images }: { images: GalleryImage[] }) {
               className="w-full aspect-square rounded-lg overflow-hidden border border-black/10 group hover:cursor-pointer grid place-items-center"
               aria-label={`Open image: ${img.alt}`}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src={img.url}
                 alt={img.alt}
                 className="w-full h-full object-cover transition group-hover:scale-105 p-0"
                 draggable={false}
+                width={400}
+                height={400}
+                placeholder="blur"
+                blurDataURL={"/img/assets/placeholder.webp"}
               />
             </div>
           ))}

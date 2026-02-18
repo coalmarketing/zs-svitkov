@@ -87,8 +87,8 @@ export default function ImageGallery({
       >
         <div className={`relative w-full ${aspectClassName}`}>
           {!current ? (
-            <div className="absolute inset-0 grid place-items-center text-sm text-white/60">
-              No images
+            <div className="absolute inset-0 grid place-items-center text-sm text-black">
+              V současnosti nejsou k dispozici žádné obrázky.
             </div>
           ) : (
             <button

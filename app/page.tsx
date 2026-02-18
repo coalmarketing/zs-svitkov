@@ -1,10 +1,10 @@
-import { Button } from "@/components/buttons";
-import Divider from "@/components/divider";
-import Header from "@/components/header";
+import { Button } from "@/components/ui/buttons";
+import Divider from "@/components/ui/divider";
+import Header from "@/components/layout/header";
 import ImageGallery from "@/components/imageGallery";
-import Section from "@/components/section";
-import SocialButtons from "@/components/socialButtons";
-import { Text } from "@/components/text";
+import Section from "@/components/layout/section";
+import SocialButtons from "@/components/ui/socialButtons";
+import { Text } from "@/components/ui/text";
 import { getPage } from "@/lib/api/endpoints/pages";
 import Image from "next/image";
 
@@ -19,7 +19,7 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen pb-20 max-w-screen overflow-x-hidden">
-      <Header imageUrl={"/img/headers/DSC_8967.JPG"} homePage={true} />
+      <Header imageUrl={"/img/headers/home.webp"} homePage={true} />
       <Section pt="1rem" pb="0">
         <div className="col-span-4 lg:col-span-8 lg:col-start-3">
           <h1 className="text-6xl lg:text-[125px] font-extrabold mb-6 lg:mb-6">

@@ -1,9 +1,9 @@
-import Header from "@/components/header";
-import Section from "@/components/section";
-import { PageHeading } from "@/components/text";
-import ArticleBlock from "@/components/articleBlock";
-import NewsFilters from "@/components/newsFilters";
-import { DownloadButton } from "@/components/buttons";
+import Header from "@/components/layout/header";
+import Section from "@/components/layout/section";
+import { PageHeading } from "@/components/ui/text";
+import ArticleBlock from "@/app/nastenka/articleBlock";
+import NewsFilters from "@/app/nastenka/newsFilters";
+import { DownloadButton } from "@/components/ui/buttons";
 
 import {
   getNews,
@@ -13,7 +13,7 @@ import {
 } from "@/lib/api/endpoints/news";
 
 import GalleryClient from "./galleryClient";
-import Pagination from "@/components/pagination";
+import Pagination from "@/components/ui/pagination";
 import ImageGallery from "@/components/imageGallery";
 
 export function buildOpenHref(params: {
@@ -148,7 +148,7 @@ const NoticeboardPage = async ({
 
   return (
     <main className="min-h-screen pb-20 max-w-screen overflow-x-hidden">
-      <Header imageUrl={"/img/headers/home.webp"} />
+      <Header imageUrl={"/img/headers/nastenka.webp"} />
       <PageHeading>Nástěnka</PageHeading>
       <Section pt="0" pb="0">
         <NewsFilters

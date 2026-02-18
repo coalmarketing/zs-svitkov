@@ -1,9 +1,9 @@
-import Header from "@/components/header";
-import Section from "@/components/section";
-import { PageHeading } from "@/components/text";
+import Header from "@/components/layout/header";
+import Section from "@/components/layout/section";
+import { PageHeading } from "@/components/ui/text";
 import { getSchoolHistory } from "@/lib/api/endpoints/history";
 import HistoryTimelineClient from "./galleryClient";
-import { DownloadButton } from "@/components/buttons";
+import { DownloadButton } from "@/components/ui/buttons";
 
 export default async function HistoryPage() {
   const events = await getSchoolHistory();

@@ -1,7 +1,7 @@
-import { Button } from "@/components/buttons";
-import Header from "@/components/header";
-import Section from "@/components/section";
-import { Heading } from "@/components/text";
+import { Button } from "@/components/ui/buttons";
+import Header from "@/components/layout/header";
+import Section from "@/components/layout/section";
+import { Heading } from "@/components/ui/text";
 
 export default function NotFound() {
   return (

@@ -1,7 +1,7 @@
-import ContactsAccordionSection from "@/components/contactAccordeon";
-import Header from "@/components/header";
-import Section from "@/components/section";
-import { Heading, PageHeading } from "@/components/text";
+import ContactsAccordionSection from "@/app/kontakty/contactAccordion";
+import Header from "@/components/layout/header";
+import Section from "@/components/layout/section";
+import { Heading, PageHeading } from "@/components/ui/text";
 
 import {
   getContactsGrouped,
@@ -173,7 +173,7 @@ export default async function ContactsPage() {
 
   return (
     <main className="min-h-screen pb-20 max-w-screen overflow-x-hidden">
-      <Header imageUrl={"/img/headers/home.webp"} />
+      <Header imageUrl={"/img/headers/kontakty.webp"} />
       <PageHeading>Kontakty</PageHeading>
 
       <Section pt={"2em"} pb={"10em"}>

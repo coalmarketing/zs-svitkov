@@ -1,4 +1,4 @@
-import { NavbarItem } from "@/components/navbar";
+import { NavbarItem } from "@/components/layout/navbar";
 
 export const SITE_NAME = "Základní škola Pardubice-Svítkov";
 

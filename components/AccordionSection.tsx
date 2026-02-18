@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
-import { Heading } from "@/components/text";
+import { Heading } from "@/components/ui/text";
 
 export default function AccordionSection({
   label,

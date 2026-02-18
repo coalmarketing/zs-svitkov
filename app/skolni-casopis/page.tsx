@@ -1,7 +1,7 @@
-import Header from "@/components/header";
-import Section from "@/components/section";
-import { PageHeading } from "@/components/text";
-import SchoolYearSelect from "@/components/magazineYearSelect";
+import Header from "@/components/layout/header";
+import Section from "@/components/layout/section";
+import { PageHeading } from "@/components/ui/text";
+import SchoolYearSelect from "@/app/skolni-casopis/magazineYearSelect";
 
 import {
   getSchoolMagazine,
@@ -59,7 +59,7 @@ export default async function SchoolMagazinePage({
 
   return (
     <main className="min-h-screen pb-20 max-w-screen overflow-x-hidden">
-      <Header imageUrl={"/img/headers/home.webp"} />
+      <Header imageUrl={"/img/headers/skolni-casopis.webp"} />
       <PageHeading>Školní časopis</PageHeading>
 
       <Section pt="20px">
