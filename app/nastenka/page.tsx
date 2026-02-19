@@ -15,6 +15,14 @@ import {
 import GalleryClient from "./galleryClient";
 import Pagination from "@/components/ui/pagination";
 import ImageGallery from "@/components/imageGallery";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Nástěnka školy | Aktuální informace a oznámení ZŠ Svítkov Pardubice",
+  description:
+    "Sledujte nástěnku ZŠ Svítkov v Pardubicích. Najdete zde aktuální informace, oznámení pro rodiče, školní aktuality i důležité provozní zprávy pro žáky.",
+  alternates: { canonical: "/nastenka" },
+};
 
 export function buildOpenHref(params: {
   page?: string;

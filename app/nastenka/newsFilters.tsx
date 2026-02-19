@@ -55,6 +55,11 @@ function buildLabelOptions(selectedTop?: Category, selectedSub?: Subcategory) {
   );
 }
 
+export const unselectedDropdownStyle =
+  "bg-transparent hover:bg-brand border-2 border-brand transition rounded-xl px-4 py-2 min-h-8 w-full appearance-none space-grotesk font-semibold text-left text-brand hover:text-black";
+export const selectedDropdownStyle =
+  "bg-brand hover:bg-brand-dark border-2 border-brand hover:border-brand-dark transition rounded-xl px-4 py-2 min-h-8 w-full appearance-none  space-grotesk font-semibold text-left";
+
 export default function NewsFilters({
   categories,
   currentCategoryCode,
@@ -122,10 +127,11 @@ export default function NewsFilters({
       <div className="w-full lg:w-1/3 relative">
         <label className="sr-only">Kategorie</label>
         <select
-          className="bg-brand hover:bg-brand-dark transition rounded-lg
-             px-4 py-2.5 min-h-11 w-full
-             appearance-none 
-             space-grotesk font-semibold text-left"
+          className={
+            selectedSub?.code || selectedTop?.code
+              ? selectedDropdownStyle
+              : unselectedDropdownStyle
+          }
           value={selectedSub?.code ?? selectedTop?.code ?? ""}
           onChange={(e) => onTopChange(e.target.value)}
         >
@@ -136,7 +142,11 @@ export default function NewsFilters({
           ))}
         </select>
         <Image
-          src={"/img/icons/Arrow_D.svg"}
+          src={
+            selectedSub?.code || selectedTop?.code
+              ? "/img/icons/Arrow_D.svg"
+              : "/img/icons/Arrow_D_brand.svg"
+          }
           alt="Arrow"
           width={24}
           height={24}
@@ -150,10 +160,11 @@ export default function NewsFilters({
           <div className="w-full lg:w-1/3 relative">
             <label className="sr-only">Podkategorie</label>
             <select
-              className="bg-brand hover:bg-brand-dark transition rounded-lg
-             px-4 py-2.5 min-h-11 w-full
-             appearance-none 
-             space-grotesk font-semibold text-left"
+              className={
+                selectedSub?.code
+                  ? selectedDropdownStyle
+                  : unselectedDropdownStyle
+              }
               value={selectedSub?.code ?? ""}
               onChange={(e) => onSubChange(e.target.value)}
             >
@@ -164,7 +175,11 @@ export default function NewsFilters({
               ))}
             </select>
             <Image
-              src={"/img/icons/Arrow_D.svg"}
+              src={
+                selectedSub?.code
+                  ? "/img/icons/Arrow_D.svg"
+                  : "/img/icons/Arrow_D_brand.svg"
+              }
               alt="Arrow"
               width={24}
               height={24}
@@ -177,10 +192,11 @@ export default function NewsFilters({
               <>
                 <label className="sr-only">Štítky</label>
                 <select
-                  className="bg-brand hover:bg-brand-dark transition rounded-lg
-             px-4 py-2.5 min-h-11 w-full
-             appearance-none 
-             space-grotesk font-semibold text-left"
+                  className={
+                    currentLabelCode
+                      ? selectedDropdownStyle
+                      : unselectedDropdownStyle
+                  }
                   value={currentLabelCode ?? ""}
                   onChange={(e) => onLabelChange(e.target.value)}
                   disabled={labelOptions.length <= 1}
@@ -192,7 +208,11 @@ export default function NewsFilters({
                   ))}
                 </select>{" "}
                 <Image
-                  src={"/img/icons/Arrow_D.svg"}
+                  src={
+                    currentLabelCode
+                      ? "/img/icons/Arrow_D.svg"
+                      : "/img/icons/Arrow_D_brand.svg"
+                  }
                   alt="Arrow"
                   width={24}
                   height={24}

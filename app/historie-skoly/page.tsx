@@ -4,6 +4,14 @@ import { PageHeading } from "@/components/ui/text";
 import { getSchoolHistory } from "@/lib/api/endpoints/history";
 import HistoryTimelineClient from "./galleryClient";
 import { DownloadButton } from "@/components/ui/buttons";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Historie školy | ZŠ Svítkov Pardubice – tradice od 1924",
+  description:
+    "Seznamte se s historií ZŠ Svítkov v Pardubicích. Škola s tradicí sahající až do roku 1924 je důležitou součástí místní komunity a vzdělávání několika generací žáků.",
+  alternates: { canonical: "/historie-skoly" },
+};
 
 export default async function HistoryPage() {
   const events = await getSchoolHistory();
@@ -11,7 +19,7 @@ export default async function HistoryPage() {
 
   return (
     <main className="min-h-screen pb-20 max-w-screen overflow-x-hidden">
-      <Header imageUrl={"/img/headers/home.webp"} />
+      <Header imageUrl={"/img/headers/historie-skoly.webp"} />
       <PageHeading>Historie školy</PageHeading>
 
       <Section>

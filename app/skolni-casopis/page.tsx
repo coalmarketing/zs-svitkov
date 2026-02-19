@@ -7,6 +7,14 @@ import {
   getSchoolMagazine,
   getSchoolMagazineYears,
 } from "@/lib/api/endpoints/schoolMagazine";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Školní časopis | ZŠ Svítkov Pardubice – zprávy od žáků",
+  description:
+    "Přečtěte si školní časopis ZŠ Svítkov v Pardubicích. Najdete zde žákovské články, reportáže ze školních akcí i aktuální dění očima dětí.",
+  alternates: { canonical: "/skolni-casopis" },
+};
 
 const SchoolMagazineBlock = ({
   url,

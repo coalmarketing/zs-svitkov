@@ -9,6 +9,15 @@ import {
   type ContactPerson,
   type SchoolInfo,
 } from "@/lib/api/endpoints/contacts";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title:
+    "Kontakt | ZŠ Svítkov Pardubice – adresa, telefon, informace pro rodiče",
+  description:
+    "Kontaktujte ZŠ Svítkov v Pardubicích. Zde najdete adresu školy, telefonní kontakty i důležité informace pro rodiče a veřejnost.",
+  alternates: { canonical: "/kontakty" },
+};
 
 function ContactCard({ person }: { person: ContactPerson }) {
   const title = person.position?.trim() ? person.position : person.name;

@@ -12,6 +12,8 @@ import { getNewsCategoriesGrouped } from "@/lib/api/endpoints/news";
 import { UNIVERSAL_PAGES, slugToApiCode } from "@/lib/webGlobals";
 
 import { ZssHttpError } from "@/lib/api/fetcher";
+import { Metadata } from "next";
+import { UNIVERSAL_PAGE_SEO } from "@/lib/uniPageSEO";
 
 type NewsLabel = { id: number; code: string; name: string };
 type NewsSubcategory = {
@@ -43,6 +45,21 @@ function findNewsCategoryCodeForPageSlug(
     }
   }
   return null;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { code: string };
+}): Promise<Metadata> {
+  const { code } = await params;
+  const seo = UNIVERSAL_PAGE_SEO[code as keyof typeof UNIVERSAL_PAGE_SEO];
+
+  return {
+    title: seo?.title ?? "ZŠ Svítkov Pardubice",
+    description: seo?.description,
+    alternates: { canonical: `/${code}` },
+  };
 }
 
 export async function generateStaticParams() {

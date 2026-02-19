@@ -4,6 +4,15 @@ import { PageHeading } from "@/components/ui/text";
 import { DownloadButton } from "@/components/ui/buttons";
 import { getDocumentsGrouped } from "@/lib/api/endpoints/documents";
 import AccordionSection from "@/components/ui/accordionSection";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title:
+    "Dokumenty ke stažení | ZŠ Svítkov Pardubice – žádosti, formuláře, informace",
+  description:
+    "Stáhněte si důležité dokumenty ZŠ Svítkov v Pardubicích. Najdete zde žádosti, formuláře pro rodiče, omluvenky i další informace pro žáky a zákonné zástupce.",
+  alternates: { canonical: "/dokumenty" },
+};
 
 export default async function DocumentsPage() {
   const groups = await getDocumentsGrouped();

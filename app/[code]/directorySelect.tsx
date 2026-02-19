@@ -2,6 +2,10 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
+import {
+  selectedDropdownStyle,
+  unselectedDropdownStyle,
+} from "../nastenka/newsFilters";
 
 export default function DirectorySelect({
   items,
@@ -27,10 +31,7 @@ export default function DirectorySelect({
     <div className="col-span-4 mb-6 lg:w-1/3 relative">
       <label className="sr-only">Rozcestník</label>
       <select
-        className="bg-brand hover:bg-brand-dark transition rounded-lg
-             px-4 py-2.5 min-h-11 w-full
-             appearance-none 
-             space-grotesk font-semibold text-left"
+        className={current ? selectedDropdownStyle : unselectedDropdownStyle}
         value={current ?? ""}
         onChange={(e) => setDir(e.target.value)}
       >
@@ -42,7 +43,9 @@ export default function DirectorySelect({
         ))}
       </select>
       <Image
-        src={"/img/icons/Arrow_D.svg"}
+        src={
+          current ? "/img/icons/Arrow_D.svg" : "/img/icons/Arrow_D_brand.svg"
+        }
         alt="Arrow"
         width={24}
         height={24}
