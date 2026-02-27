@@ -26,7 +26,7 @@ export default async function Home() {
             ZŠ Svítkov
           </h1>
           <p className="text-3xl lg:text-[40px] leading-none font-bold space-grotesk">
-            škola, která otevírá dveře
+            Škola, která otevírá dveře
             <br className="hidden lg:inline" />
             novým možnostem
           </p>
