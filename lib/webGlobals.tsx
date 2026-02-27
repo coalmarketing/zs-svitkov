@@ -54,6 +54,11 @@ export const navbarItems: NavbarItem[] = [
         href: "https://eu.zonerama.com/zssvitkovfotogalerie/687661",
         external: true,
       },
+
+      // ------------------
+      // NOVÝ EXTERNÍ LINK, AŽ BUDEME VĚDĚT ODKAZ, ZRUŠIT KOMENTÁŘ A VYPLNIT POLE HREF; PO ODKOMENTOVÁNÍ SE OBJEVÍ V NABARU
+      // -------------------
+      // {label: "Naše škola" ,href: "#", external: true}
     ],
   },
   {
