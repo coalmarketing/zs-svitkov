@@ -23,7 +23,7 @@ function ContactCard({ person }: { person: ContactPerson }) {
   const title = person.position?.trim() ? person.position : person.name;
 
   return (
-    <div className="w-full text-sm">
+    <div className="w-full text-base">
       <div className="font-bold text-brand">{title}</div>
 
       {/* Mobile: stacked. LG+: 8-col grid like before */}
@@ -54,7 +54,7 @@ function ContactCard({ person }: { person: ContactPerson }) {
 
 function SchoolInfoBlock({ info }: { info: SchoolInfo }) {
   return (
-    <div className="text-sm grid grid-cols-2 gap-4">
+    <div className="text-base grid grid-cols-2 gap-4">
       <div>
         <div className="">
           <h4 className="font-bold text-brand">Adresa</h4>
@@ -124,7 +124,7 @@ function GenericItems({
   heading: string;
 }) {
   return (
-    <div className="text-sm">
+    <div className="text-base">
       <div className="font-bold text-brand">{heading}</div>
 
       {/* Mobile: stacked. LG+: grid */}
@@ -144,7 +144,7 @@ function ContactsGroupBody({ group }: { group: ContactsGroup }) {
 
   if (category.type === "contacts") {
     if (!group.contacts || group.contacts.length === 0) {
-      return <div className="text-sm">Žádné kontakty k zobrazení.</div>;
+      return <div className="text-base">Žádné kontakty k zobrazení.</div>;
     }
     return (
       <div className="flex flex-col gap-6">
@@ -157,7 +157,7 @@ function ContactsGroupBody({ group }: { group: ContactsGroup }) {
 
   if (category.type === "info") {
     if (!group.info) {
-      return <div className="text-sm">Informace nejsou k dispozici.</div>;
+      return <div className="text-base">Informace nejsou k dispozici.</div>;
     }
     return <SchoolInfoBlock info={group.info} />;
   }

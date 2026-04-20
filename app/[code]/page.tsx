@@ -166,7 +166,7 @@ export default async function UniversalPageRoute({
                 {b.heading}
               </h2>
               <div
-                className="prose prose-sm prose-a:text-brand prose-a:underline w-full"
+                className="prose prose-base prose-a:text-brand prose-a:underline w-full"
                 dangerouslySetInnerHTML={{ __html: b.content }}
               />
             </div>

@@ -111,7 +111,7 @@ const PinnedArticle = ({
 
         <div className="flex items-center justify-between pt-4 pb-10">
           <a
-            className="text-xs font-semibold underline underline-offset-4 py-1 text-brand hover:text-brand-dark transition-colors"
+            className="text-base font-semibold underline underline-offset-4 py-1 text-brand hover:text-brand-dark transition-colors"
             href={closeHref}
           >
             ✕ Skrýt aktualitu

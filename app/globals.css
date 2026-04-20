@@ -16,6 +16,8 @@
   --color-fg: var(--color-black);
   --color-accent: var(--color-brand);
   --color-muted: var(--color-gray);
+
+  --text-base: 1rem;
 }
 
 .prose {

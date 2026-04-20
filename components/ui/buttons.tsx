@@ -70,7 +70,7 @@ export const DownloadButton: React.FC<DownloadButtonProps> = ({
       target={target}
       className="text-brand hover:text-brand-dark transition"
     >
-      <div className="flex flex-row flex-nowrap gap-2 items-center text-sm">
+      <div className="flex flex-row flex-nowrap gap-2 items-center text-base">
         <PiPaperclipLight size={24} />
         {children}
       </div>

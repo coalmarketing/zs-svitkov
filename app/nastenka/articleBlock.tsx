@@ -32,7 +32,7 @@ const ArticleBlock: React.FC<ArticleBlockProps> = ({
     <div className="w-full space-grotesk lg:pr-20">
       <div className="vertical-line ml-4 md:ml-0">
         <div className="flex flex-row flex-nowrap gap-5 items-center mb-2">
-          <p className="text-brand text-sm lg:text-lg font-semibold space-grotesk">
+          <p className="text-brand text-base lg:text-lg font-semibold space-grotesk">
             {new Date(date).toLocaleDateString("cs-CZ", {
               year: "numeric",
               month: "long",
@@ -72,13 +72,13 @@ const ArticleBlock: React.FC<ArticleBlockProps> = ({
       </div>
 
       <div className="">
-        <div className="text-black prose prose-sm prose-p:leading-tight prose-a:text-brand prose-a:underline max-w-none">
+        <div className="text-black prose prose-base prose-p:leading-tight prose-a:text-brand prose-a:underline max-w-none">
           {children}
         </div>
 
         {!expanded && (
           <Link
-            className="mt-4 block font-bold text-brand underline underline-offset-5 text-sm"
+            className="mt-4 block font-bold text-brand underline underline-offset-5 text-base"
             href={href + "#pin"}
           >
             Zobrazit více +

@@ -27,6 +27,7 @@ export default async function Home() {
           </h1>
           <p className="text-3xl lg:text-[40px] leading-none font-bold space-grotesk">
             Škola, která otevírá dveře <br className="hidden lg:inline" />
+            <span className="inline lg:hidden"> </span>
             novým možnostem
           </p>
         </div>
