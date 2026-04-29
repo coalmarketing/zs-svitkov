@@ -12,6 +12,7 @@ import {
   type NewsItem,
 } from "@/lib/api/endpoints/news";
 
+import ClampedContent from "./clampedContent";
 import GalleryClient from "./galleryClient";
 import Pagination from "@/components/ui/pagination";
 import ImageGallery from "@/components/imageGallery";
@@ -67,12 +68,10 @@ const PinnedArticle = ({
       <div id="pin" className="mb-10 border-b border-black/10">
         <ArticleBlock
           title={item.title}
-          href={closeHref}
           date={item.date}
           labels={item.labels}
           hasImage={item.images?.length > 0}
           hasAttachment={item.documents?.length > 0}
-          expanded
         >
           <div dangerouslySetInnerHTML={{ __html: item.content }} />
 
@@ -184,14 +183,19 @@ const NoticeboardPage = async ({
               labels={item.labels}
               hasImage={item.images?.length > 0}
               hasAttachment={item.documents?.length > 0}
-              href={buildOpenHref({
-                page: String(page),
-                categoryCode: params.categoryCode,
-                labelCode: params.labelCode,
-                open: item.slug,
-              })}
             >
-              <div dangerouslySetInnerHTML={{ __html: item.content }} />
+              <ClampedContent
+                html={item.content}
+                href={buildOpenHref({
+                  page: String(page),
+                  categoryCode: params.categoryCode,
+                  labelCode: params.labelCode,
+                  open: item.slug,
+                })}
+                forceShowButton={
+                  item.images?.length > 0 || item.documents?.length > 0
+                }
+              />
             </ArticleBlock>
           ))}
         </div>

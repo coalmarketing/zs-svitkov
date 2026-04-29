@@ -1,12 +1,9 @@
-import Link from "next/link";
-
 import Tag from "../../components/ui/tag";
 import { Label } from "./newsFilters";
 import Image from "next/image";
 
 interface ArticleBlockProps {
   title: string;
-  href: string;
   date: string;
 
   hasImage?: boolean;
@@ -14,19 +11,15 @@ interface ArticleBlockProps {
 
   children?: React.ReactNode;
   labels?: Label[];
-
-  expanded?: boolean;
 }
 
 const ArticleBlock: React.FC<ArticleBlockProps> = ({
   title,
   children,
-  href,
   date,
   hasImage = false,
   hasAttachment = false,
   labels,
-  expanded = false,
 }) => {
   return (
     <div className="w-full space-grotesk lg:pr-20">
@@ -72,18 +65,10 @@ const ArticleBlock: React.FC<ArticleBlockProps> = ({
       </div>
 
       <div className="">
-        <div className="text-black prose prose-base prose-p:leading-tight prose-a:text-brand prose-a:underline max-w-none">
+        <div className="text-black prose prose-base prose-p:leading-tight prose-a:text-brand prose-a:underline max-w-none prose-ul:list-disc">
           {children}
         </div>
 
-        {!expanded && (
-          <Link
-            className="mt-4 block font-bold text-brand underline underline-offset-5 text-base"
-            href={href + "#pin"}
-          >
-            Zobrazit více +
-          </Link>
-        )}
       </div>
     </div>
   );
