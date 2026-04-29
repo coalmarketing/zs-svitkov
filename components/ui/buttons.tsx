@@ -39,7 +39,7 @@ export const Button: React.FC<ButtonProps> = ({
         <ButtonInner>{children}</ButtonInner>
       </a>
     ) : (
-      <a href={href} className={className}>
+      <a href={href} className={className} target="_blank">
         <ButtonInner>{children}</ButtonInner>
       </a>
     )
@@ -61,7 +61,7 @@ export const DownloadButton: React.FC<DownloadButtonProps> = ({
   children,
   fileUrl,
   download = true,
-  target,
+  target = "_blank",
 }) => {
   return (
     <a

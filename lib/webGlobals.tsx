@@ -82,4 +82,8 @@ export const navbarItems: NavbarItem[] = [
   },
   { label: "Jídelna", href: "/jidelna" },
   { label: "Kontakty", href: "/kontakty" },
+  {
+    label: "Fotogalerie",
+    href: "https://eu.zonerama.com/zssvitkovfotogalerie/687661",
+  },
 ];

@@ -14,6 +14,7 @@ type NavbarSubItem = {
 export type NavbarItem = {
   label: string;
   href: string;
+  external?: boolean;
   subItems?: NavbarSubItem[];
 };
 
@@ -52,14 +53,16 @@ const DesktopNav: React.FC<NavbarProps> = ({ items }) => {
             >
               {/* Top-level item */}
               {item.href !== "" ? (
-                <Link
+                <a
                   href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onMouseEnter={() => setHovered(idx)}
                   onMouseLeave={() => setHovered(null)}
                   className="w-full h-16 flex items-center justify-center text-black hover:text-orange-200 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-200"
                 >
                   {inside(item, pathname === item.href, hovered === idx)}
-                </Link>
+                </a>
               ) : (
                 <span
                   className="w-full h-16 flex items-center justify-center text-black cursor-default"
@@ -111,12 +114,14 @@ const DesktopNav: React.FC<NavbarProps> = ({ items }) => {
                             }
                           </a>
                         ) : (
-                          <Link
+                          <a
                             href={sub.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="block px-4 py-1 text-[17px] text-black outline-none hover:text-brand-dark transition"
                           >
                             {sub.label}
-                          </Link>
+                          </a>
                         )}
                       </li>
                     ))}
